@@ -439,8 +439,9 @@
 
         .products {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 35px;
+            align-items: stretch;
         }
 
         .product-card {
@@ -450,6 +451,9 @@
             box-shadow: 0 8px 35px rgba(139, 90, 43, 0.08);
             transition: all 0.4s ease;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .product-card::before {
@@ -476,9 +480,10 @@
 
         .product-card img {
             width: 100%;
-            height: 240px;
+            height: 220px;
             object-fit: cover;
             transition: transform 0.5s ease;
+            flex-shrink: 0;
         }
 
         .product-card:hover img {
@@ -486,7 +491,10 @@
         }
 
         .product-info {
-            padding: 30px;
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-info .tag {
@@ -1034,6 +1042,10 @@
 
             .products {
                 grid-template-columns: 1fr;
+            }
+
+            .product-card {
+                max-width: 100%;
             }
 
             .contact-section {
