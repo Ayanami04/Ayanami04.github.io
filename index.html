@@ -430,6 +430,97 @@
             line-height: 1.7;
         }
 
+        /* 荣誉资质 */
+        .honor-section {
+            background: linear-gradient(180deg, var(--white) 0%, var(--gold-light) 100%);
+            padding: 60px 20px;
+            margin: 40px -20px;
+        }
+
+        .honor-section h3 {
+            text-align: center;
+            font-size: 30px;
+            color: var(--brown);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .honor-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--brown));
+            border-radius: 3px;
+        }
+
+        .honor-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        .honor-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 35px 25px;
+            text-align: center;
+            box-shadow: 0 6px 25px rgba(139, 90, 43, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .honor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--brown));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .honor-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(139, 90, 43, 0.15);
+        }
+
+        .honor-card:hover::before {
+            opacity: 1;
+        }
+
+        .honor-icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+            transition: transform 0.4s ease;
+        }
+
+        .honor-card:hover .honor-icon {
+            transform: scale(1.1);
+        }
+
+        .honor-card h4 {
+            font-size: 18px;
+            color: var(--brown);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .honor-card p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
         /* 产品中心 */
         #products {
             background: var(--white);
@@ -444,12 +535,12 @@
 
         .products {
             display: grid;
-            grid-template-columns: repeat(3, minmax(320px, 1fr));
+            grid-template-columns: repeat(3, minmax(300px, 1fr));
             gap: 35px;
             align-items: stretch;
-            max-width: 1400px;
+            max-width: 95%;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 0 20px;
         }
 
         .product-card {
@@ -1179,6 +1270,43 @@
         <div class="material-section">
             <h3>原料优势</h3>
             <p>咸宁桂花资源丰富，全市桂花种植面积超11万亩，拥有金桂、银桂、丹桂、四季桂四大品种群，百年古桂数量占全国90%以上。华彬力美依托本地资源，原料供应稳定且品质优良，从源头保障产品质量。已与咸宁市咸安区桂花镇签订40万斤桂花供应协议，保障原料稳定供应，助力当地农民增收。</p>
+        </div>
+
+        <!-- 荣誉资质 -->
+        <div class="honor-section">
+            <h3>荣誉资质</h3>
+            <div class="honor-cards">
+                <div class="honor-card">
+                    <div class="honor-icon">🏆</div>
+                    <h4>国家级高新技术企业</h4>
+                    <p>荣获国家高新技术企业认定</p>
+                </div>
+                <div class="honor-card">
+                    <div class="honor-icon">📜</div>
+                    <h4>ISO质量认证</h4>
+                    <p>ISO 9001质量管理体系认证</p>
+                </div>
+                <div class="honor-card">
+                    <div class="honor-icon">⭐</div>
+                    <h4>亚太香料协会会员</h4>
+                    <p>获得亚太地区香料协会认可</p>
+                </div>
+                <div class="honor-card">
+                    <div class="honor-icon">💎</div>
+                    <h4>芬美意认证供应商</h4>
+                    <p>国际巨头芬美意认可供应商</p>
+                </div>
+                <div class="honor-card">
+                    <div class="honor-icon">🌾</div>
+                    <h4>农业产业化重点龙头企业</h4>
+                    <p>咸宁重点农业产业化项目</p>
+                </div>
+                <div class="honor-card">
+                    <div class="honor-icon">🔬</div>
+                    <h4>企校联合创新中心</h4>
+                    <p>咸宁市桂花深加工技术创新中心</p>
+                </div>
+            </div>
         </div>
     </section>
 
