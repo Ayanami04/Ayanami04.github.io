@@ -617,8 +617,11 @@
         /* 产品中心 */
         #products {
             background: var(--white);
-            margin: 60px 0;
-            padding: 80px 20px;
+            margin: 60px auto;
+            padding: 80px 30px;
+            max-width: 1500px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(139, 90, 43, 0.08);
         }
 
         #products > h2 {
@@ -628,12 +631,13 @@
 
         .products {
             display: grid;
-            grid-template-columns: repeat(3, minmax(300px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
             align-items: stretch;
-            max-width: 95%;
+            justify-items: center;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 50px;
         }
 
         .product-card {
@@ -646,6 +650,8 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            width: 100%;
+            max-width: 380px;
         }
 
         .product-card::before {
@@ -670,12 +676,91 @@
             box-shadow: 0 20px 50px rgba(139, 90, 43, 0.15);
         }
 
+        .product-image {
+            width: 100%;
+            height: 220px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .product-image svg {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image svg {
+            transform: scale(1.08);
+        }
+
+        .product-header {
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-header .tag {
+            font-size: 12px;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--white);
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .product-header h3 {
+            margin: 0;
+            font-size: 20px;
+            color: var(--brown);
+            flex: 1;
+            padding-left: 15px;
+        }
+
+        .expand-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--gold-light);
+            color: var(--brown);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover .expand-icon {
+            background: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        .product-details {
+            padding: 0 25px 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .product-card.active .product-details {
+            max-height: 800px;
+            padding-top: 15px;
+        }
+
+        .product-card.active .expand-icon {
+            transform: rotate(45deg);
+            background: var(--gold);
+        }
+
         .product-card img {
             width: 100%;
             height: 220px;
             object-fit: cover;
             transition: transform 0.5s ease;
             flex-shrink: 0;
+            background: linear-gradient(135deg, #F5C76F 0%, #E8B85C 50%, #D4A04A 100%);
         }
 
         .product-card:hover img {
@@ -846,8 +931,7 @@
         .material-section {
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 50%, var(--brown-light) 100%);
             border-radius: 20px;
-            padding: 65px 50px;
-            text-align: center;
+            padding: 55px;
             position: relative;
             overflow: hidden;
         }
@@ -874,21 +958,43 @@
             border-radius: 50%;
         }
 
-        .material-section h3 {
+        .material-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+        }
+
+        .material-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s ease;
+        }
+
+        .material-image:hover {
+            transform: scale(1.05);
+        }
+
+        .material-image img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .material-text h3 {
             font-size: 28px;
             color: var(--white);
             margin-bottom: 25px;
             font-weight: 700;
-            position: relative;
         }
 
-        .material-section p {
+        .material-text p {
             font-size: 16px;
             color: rgba(255, 255, 255, 0.9);
-            line-height: 2;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
+            line-height: 2.1;
+            margin-bottom: 15px;
         }
 
         /* 联系我们 */
@@ -1363,15 +1469,23 @@
                     </ul>
                 </div>
                 <div class="tech-image">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20essential%20oil%20extraction%20factory%20professional%20equipment%20clean%20environment%20warm%20lighting&image_size=square" alt="生产基地">
+                    <img src="https://picsum.photos/500/400?random=4" alt="现代化生产设备">
                 </div>
             </div>
         </div>
 
         <!-- 原料优势 -->
         <div class="material-section">
-            <h3>原料优势</h3>
-            <p>咸宁桂花资源丰富，全市桂花种植面积超11万亩，拥有金桂、银桂、丹桂、四季桂四大品种群，百年古桂数量占全国90%以上。华彬力美依托本地资源，原料供应稳定且品质优良，从源头保障产品质量。已与咸宁市咸安区桂花镇签订40万斤桂花供应协议，保障原料稳定供应，助力当地农民增收。</p>
+            <div class="material-content">
+                <div class="material-image">
+                    <img src="https://picsum.photos/500/400?random=5" alt="咸宁桂花种植基地">
+                </div>
+                <div class="material-text">
+                    <h3>原料优势</h3>
+                    <p>咸宁桂花资源丰富，全市桂花种植面积超11万亩，拥有金桂、银桂、丹桂、四季桂四大品种群，百年古桂数量占全国90%以上。</p>
+                    <p>华彬力美依托本地资源，原料供应稳定且品质优良，从源头保障产品质量。已与咸宁市咸安区桂花镇签订40万斤桂花供应协议，保障原料稳定供应，助力当地农民增收。</p>
+                </div>
+            </div>
         </div>
 
         <!-- 荣誉资质 -->
@@ -1417,11 +1531,30 @@
         <h2>产品中心</h2>
         <div class="products">
             <!-- 桂花精油 -->
-            <div class="product-card">
-                <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=golden%20osmanthus%20essential%20oil%20bottle%20cosmetic%20product%20professional%20photo%20elegant%20packaging&image_size=square" alt="桂花精油">
-                <div class="product-info">
+            <div class="product-card" onclick="toggleProduct(this)">
+                <div class="product-image">
+                    <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#F5C76F;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#D4A04A;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="100" height="80" fill="url(#grad1)"/>
+                        <ellipse cx="50" cy="30" rx="25" ry="35" fill="white" fill-opacity="0.3"/>
+                        <rect x="42" y="10" width="16" height="45" rx="3" fill="white" fill-opacity="0.4"/>
+                        <circle cx="50" cy="8" r="8" fill="#8B5A2B"/>
+                        <circle cx="35" cy="25" r="4" fill="#FFE4B5" fill-opacity="0.6"/>
+                        <circle cx="65" cy="40" r="3" fill="#FFE4B5" fill-opacity="0.5"/>
+                        <circle cx="45" cy="55" r="3" fill="#FFE4B5" fill-opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="product-header">
                     <span class="tag">核心产品</span>
                     <h3>桂花精油</h3>
+                    <span class="expand-icon">+</span>
+                </div>
+                <div class="product-details">
                     <div class="section-title">核心工艺</div>
                     <ul>
                         <li>采用咸宁鲜桂花，通过超临界二氧化碳流体技术低温萃取</li>
@@ -1443,11 +1576,31 @@
             </div>
 
             <!-- 桂花细胞液 -->
-            <div class="product-card">
-                <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=osmanthus%20floral%20water%20skincare%20product%20bottle%20professional%20photo%20elegant%20glass&image_size=square" alt="桂花细胞液">
-                <div class="product-info">
+            <div class="product-card" onclick="toggleProduct(this)">
+                <div class="product-image">
+                    <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#E8F4F8;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#C5DDE8;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="100" height="80" fill="url(#grad2)"/>
+                        <rect x="35" y="20" width="30" height="50" rx="8" fill="white" stroke="#E8F4F8" stroke-width="2"/>
+                        <rect x="38" y="25" width="24" height="40" rx="5" fill="url(#grad2)"/>
+                        <circle cx="50" cy="18" r="6" fill="#8B5A2B"/>
+                        <circle cx="42" cy="40" r="3" fill="#87CEEB" fill-opacity="0.6"/>
+                        <circle cx="58" cy="45" r="2" fill="#87CEEB" fill-opacity="0.5"/>
+                        <circle cx="48" cy="55" r="2.5" fill="#87CEEB" fill-opacity="0.5"/>
+                        <ellipse cx="30" cy="35" rx="8" ry="12" fill="#FFEFD5" fill-opacity="0.4"/>
+                    </svg>
+                </div>
+                <div class="product-header">
                     <span class="tag">核心产品</span>
                     <h3>桂花细胞液</h3>
+                    <span class="expand-icon">+</span>
+                </div>
+                <div class="product-details">
                     <div class="section-title">核心工艺</div>
                     <ul>
                         <li>采用柱式真空冷凝干燥技术低温冷榨锁鲜</li>
@@ -1470,11 +1623,32 @@
             </div>
 
             <!-- 护肤品原料 -->
-            <div class="product-card">
-                <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=natural%20skincare%20ingredients%20cosmetic%20raw%20materials%20professional%20photo%20clean%20laboratory&image_size=square" alt="护肤品原料">
-                <div class="product-info">
+            <div class="product-card" onclick="toggleProduct(this)">
+                <div class="product-image">
+                    <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFF8DC;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#FFE4B5;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="100" height="80" fill="url(#grad3)"/>
+                        <rect x="30" y="15" width="40" height="55" rx="4" fill="white" stroke="#FFE4B5" stroke-width="2"/>
+                        <rect x="35" y="20" width="30" height="45" fill="url(#grad3)"/>
+                        <rect x="40" y="10" width="20" height="12" rx="2" fill="#8B5A2B"/>
+                        <circle cx="35" cy="35" r="4" fill="#F5C76F" fill-opacity="0.6"/>
+                        <circle cx="55" cy="30" r="3" fill="#F5C76F" fill-opacity="0.5"/>
+                        <circle cx="48" cy="50" r="3.5" fill="#F5C76F" fill-opacity="0.5"/>
+                        <circle cx="60" cy="45" r="2.5" fill="#F5C76F" fill-opacity="0.6"/>
+                        <circle cx="38" cy="55" r="2" fill="#F5C76F" fill-opacity="0.5"/>
+                    </svg>
+                </div>
+                <div class="product-header">
                     <span class="tag">核心产品</span>
                     <h3>护肤品原料</h3>
+                    <span class="expand-icon">+</span>
+                </div>
+                <div class="product-details">
                     <div class="section-title">核心工艺</div>
                     <ul>
                         <li>以桂花提取物、桂花精油衍生物为核心</li>
@@ -1526,7 +1700,7 @@
                 </div>
             </div>
             <div class="map-container" onclick="showMap()">
-                <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=aerial%20view%20modern%20industrial%20park%20with%20green%20landscaping%20professional%20photo&image_size=landscape_16_9" alt="地图">
+                <img src="https://neeko-copilot.bytedance.net/api/text2image?prompt=modern%20industrial%20park%20aerial%20view%20with%20green%20landscaping%20professional%20photography&size=800x320" alt="地图">
                 <div class="map-overlay">📍 点击查看详细地图</div>
             </div>
         </div>
@@ -1616,6 +1790,11 @@
                 mobileMenu.style.display = 'none';
             }
         });
+
+        // 产品卡片展开/收起功能
+        function toggleProduct(card) {
+            card.classList.toggle('active');
+        }
 
         // 地图弹窗功能
         function showMap() {
