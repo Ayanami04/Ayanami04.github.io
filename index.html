@@ -2,207 +2,192 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>华彬力美科技（湖北）有限公司 - 源自咸宁金桂，萃取自然本味</title>
-    <meta name="description" content="华彬力美科技专注桂花深加工，打造华中地区桂花精油、香精、香料系列产品生产基地，助力中国桂花城建设。">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            margin: 0 !important;
-            padding: 0 !important;
-            border: 0 !important;
-        }
-
         :root {
-            --gold: #F5C76F;
-            --gold-light: #FDF5E0;
-            --gold-dark: #D4A574;
-            --brown: #8B5A2B;
-            --brown-light: #A67B5B;
-            --cream: #F7F5F2;
-            --cream-dark: #E8E4DC;
-            --gray: #666666;
-            --gray-light: #999999;
-            --white: #FFFFFF;
+            --primary: #0d0d0d;
+            --secondary: #1a1a1a;
+            --accent: #c9a962;
+            --accent-light: #e0c78a;
+            --accent-dark: #a88b4a;
+            --accent-gold: #b8956c;
+            --text-dark: #1a1a1a;
+            --text-light: #4a4a4a;
+            --text-muted: #8a8a8a;
+            --text-gold: #c9a962;
+            --bg-light: #fafaf9;
+            --bg-white: #ffffff;
+            --bg-dark: #1a1a1a;
+            --border: #e8e8e8;
+            --border-gold: rgba(201, 169, 98, 0.3);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --shadow-gold: 0 8px 32px rgba(201, 169, 98, 0.15);
         }
 
-        body {
-            font-family: 'Microsoft YaHei', 'PingFang SC', 'SimHei', sans-serif;
-            background-color: var(--cream);
-            line-height: 1.7;
-            color: #333;
-            overflow-x: hidden;
-            cursor: default;
-            margin: 0;
-            padding: 0;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif; 
+            background: var(--bg-light); 
+            color: var(--text-dark); 
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* 滚动进度条 */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), #FFD700);
-            z-index: 10000;
-            transition: width 0.1s ease;
+        h1, h2, h3, h4 {
+            font-family: 'Noto Serif SC', 'Songti SC', serif;
+            font-weight: 600;
         }
 
-        /* 鼠标跟随光效 */
-        .cursor-glow {
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(245, 199, 111, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: all 0.1s ease;
-        }
-
-        /* 粒子画布 */
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 500;
-        }
-
-        /* 导航栏 */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(139, 90, 43, 0.98);
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(13, 13, 13, 0.98);
+            padding: 20px 100px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            border-bottom: 1px solid rgba(201, 169, 98, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(20px);
-            color: white;
-            padding: 16px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.4s ease;
-            border-bottom: 1px solid rgba(245, 199, 111, 0.1);
         }
 
         nav.scrolled {
-            padding: 14px 40px;
-            background: rgba(139, 90, 43, 0.98);
-            box-shadow: 0 6px 30px rgba(139, 90, 43, 0.3);
+            padding: 15px 100px;
+            background: rgba(13, 13, 13, 0.96);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
         }
 
-        .logo {
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            position: relative;
-            padding-left: 35px;
-        }
-
-        .logo::before {
-            content: '🌼';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 24px;
-        }
-
-        nav ul {
-            list-style: none;
+        .logo { 
+            font-size: 24px; 
+            font-weight: 700; 
+            color: var(--bg-white);
+            letter-spacing: 1px;
             display: flex;
-            gap: 40px;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Noto Serif SC', serif;
         }
-
-        nav a {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            font-size: 15px;
+        
+        .logo::before {
+            content: '';
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(201, 169, 98, 0.3);
+        }
+        
+        .nav-menu { display: flex; gap: 0; list-style: none; }
+        .nav-item { position: relative; }
+        .nav-item > a {
+            color: rgba(255, 255, 255, 0.9); 
+            text-decoration: none; 
+            font-size: 14px; 
             font-weight: 500;
-            transition: all 0.3s ease;
+            padding: 24px 32px; 
+            display: block; 
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
             position: relative;
-            padding: 8px 0;
         }
-
-        nav a:hover {
-            color: var(--gold);
-        }
-
-        nav a::after {
+        
+        .nav-item > a::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
+            bottom: 15px;
+            left: 50%;
             width: 0;
             height: 2px;
-            background: var(--gold);
-            transition: width 0.3s ease;
-            border-radius: 1px;
+            background: var(--accent);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+        }
+        
+        .nav-item > a:hover { 
+            color: var(--accent); 
+        }
+        
+        .nav-item > a:hover::after {
+            width: 40px;
         }
 
-        nav a:hover::after {
-            width: 100%;
+        .dropdown {
+            position: absolute; top: 100%; left: 0;
+            background: var(--bg-white); 
+            min-width: 240px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border-radius: 8px; 
+            padding: 8px 0;
+            opacity: 0; 
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.98);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+            border: 1px solid var(--border);
         }
-
-        .menu-icon {
-            display: none;
-            font-size: 28px;
-            cursor: pointer;
-            padding: 5px;
+        
+        .nav-item:hover .dropdown {
+            opacity: 1; 
+            visibility: visible;
+            transform: translateY(0) scale(1);
         }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 68px;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(180deg, var(--brown) 0%, #7A4F25 100%);
-            padding: 25px 30px;
-            z-index: 999;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        
+        .dropdown::before {
+            content: ''; 
+            position: absolute; 
+            top: -8px; 
+            left: 40px;
+            border-left: 8px solid transparent; 
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid var(--bg-white);
+            filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.05));
         }
-
-        .mobile-menu ul {
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .mobile-menu a {
-            font-size: 17px;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--gold);
+        
+        .dropdown a {
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            padding: 16px 28px; 
+            color: var(--text-dark); 
             text-decoration: none;
+            font-size: 14px; 
+            transition: all 0.25s ease;
+            border-left: 3px solid transparent;
         }
-        .mobile-menu a:hover {
-            color: var(--gold-light);
+        
+        .dropdown a:hover {
+            background: rgba(201, 169, 98, 0.06); 
+            color: var(--accent);
+            border-left-color: var(--accent);
+            padding-left: 32px;
+        }
+        
+        .dropdown a::after {
+            content: '→'; 
+            color: var(--accent); 
+            font-size: 14px; 
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.25s ease;
+        }
+        
+        .dropdown a:hover::after {
+            opacity: 0.8;
+            transform: translateX(0);
         }
 
-        /* 首页横幅 */
-        header {
-            background: linear-gradient(135deg, #5D3A1A 0%, #3D2410 50%, #2A1808 100%),
-                        url('https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=golden%20osmanthus%20flowers%20close%20up%20beautiful%20nature%20soft%20lighting%20professional%20photography&image_size=landscape_16_9');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        .menu-icon { display: none; color: var(--bg-white); font-size: 24px; cursor: pointer; }
+
+        .hero {
+            background: linear-gradient(145deg, #0d0d0d 0%, #1a1a1a 30%, #0d0d0d 60%, #1a1a1a 100%);
+            padding: 200px 100px 160px; 
+            text-align: center; 
             color: white;
-            text-align: center;
-            padding: 140px 20px 100px;
-            margin: 0;
-            position: relative;
+            position: relative; 
             overflow: hidden;
             min-height: 100vh;
             display: flex;
@@ -210,82 +195,87 @@
             justify-content: center;
         }
 
-        header::before {
-            content: '';
+        .hero::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 15% 25%, rgba(201, 169, 98, 0.12) 0%, transparent 45%),
+                radial-gradient(ellipse at 85% 75%, rgba(201, 169, 98, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 50%, rgba(201, 169, 98, 0.03) 0%, transparent 60%);
+        }
+
+        .hero-pattern {
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at top, rgba(245, 199, 111, 0.15) 0%, transparent 60%);
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
+            right: 0;
             bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            background: linear-gradient(180deg, transparent 0%, var(--cream) 100%);
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(201, 169, 98, 0.03) 1px, transparent 0);
+            background-size: 40px 40px;
+            opacity: 0.5;
         }
 
-        .header-content {
-            position: relative;
-            z-index: 1;
+        .hero-content { 
+            position: relative; 
+            z-index: 1; 
+            max-width: 900px; 
+            margin: 0 auto;
         }
-
-        header h1 {
-            font-size: 62px;
-            margin-bottom: 30px;
-            font-weight: 800;
-            letter-spacing: 5px;
-            animation: fadeUp 0.8s ease;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(180deg, #FFFFFF 0%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--accent);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 500;
+            opacity: 0.9;
         }
-
-        header .subtitle {
-            font-size: 26px;
-            margin-bottom: 55px;
-            opacity: 0.98;
-            line-height: 2.1;
-            max-width: 900px;
+        
+        .hero h1 { 
+            font-size: 58px; 
+            margin-bottom: 28px; 
+            color: var(--bg-white); 
+            font-weight: 700;
+            letter-spacing: 2px;
+            line-height: 1.3;
+            text-shadow: 0 2px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p { 
+            font-size: 19px; 
+            opacity: 0.85; 
+            margin-bottom: 60px;
+            font-weight: 300;
+            letter-spacing: 0.8px;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
-            animation: fadeUp 0.8s ease 0.2s both;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 25px;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeUp 0.8s ease 0.4s both;
+            line-height: 1.8;
         }
 
         .btn {
-            background: linear-gradient(135deg, #FFD700 0%, var(--gold) 50%, #D4A574 100%);
-            color: #4A2C0A;
-            padding: 18px 55px;
-            text-decoration: none;
-            border-radius: 40px;
-            font-size: 18px;
-            font-weight: 700;
-            display: inline-block;
-            transition: all 0.4s ease;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--bg-white); 
+            padding: 18px 52px; 
+            border-radius: 4px;
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 15px;
+            display: inline-block; 
+            margin: 0 15px;
+            box-shadow: 0 6px 24px rgba(201, 169, 98, 0.35);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 1px;
             border: none;
-            box-shadow: 
-                0 10px 40px rgba(245, 199, 111, 0.4),
-                0 0 0 1px rgba(245, 199, 111, 0.3) inset;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
-            letter-spacing: 1.5px;
         }
 
         .btn::before {
@@ -295,126 +285,145 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
         }
 
         .btn:hover::before {
             left: 100%;
         }
 
-        .btn:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 
-                0 18px 50px rgba(245, 199, 111, 0.5),
-                0 0 0 1px rgba(245, 199, 111, 0.5) inset;
+        .btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 32px rgba(201, 169, 98, 0.45);
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            color: var(--gold);
-            border: 2px solid rgba(245, 199, 111, 0.6);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            background: transparent;
+            color: var(--bg-white);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: none;
         }
 
         .btn-secondary:hover {
-            background: var(--gold);
-            color: #4A2C0A;
-            box-shadow: 0 12px 35px rgba(245, 199, 111, 0.45);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+            color: var(--accent);
         }
 
-        /* 装饰性元素 */
-        .decorative-leaf {
+        .hero-decoration {
             position: absolute;
-            opacity: 0.08;
-            font-size: 80px;
+            top: 15%;
+            right: 8%;
+            opacity: 0.12;
         }
 
-        .leaf-1 { top: 20%; left: 10%; transform: rotate(-30deg); }
-        .leaf-2 { top: 60%; right: 15%; transform: rotate(45deg); }
-        .leaf-3 { top: 30%; right: 25%; transform: rotate(-15deg); }
-
-        /* 通用区块 */
-        section {
-            padding: 80px 20px;
-            max-width: 1300px;
-            margin: 0 auto;
-            position: relative;
+        .hero-decoration svg { 
+            width: 220px; 
+            height: 220px; 
+            animation: float 8s ease-in-out infinite;
         }
 
-        section h2 {
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .products-preview {
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 120px 100px;
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+            gap: 48px;
+        }
+
+        .product-card {
+            background: var(--bg-white); 
+            border-radius: 12px; 
+            padding: 50px 40px;
+            box-shadow: var(--shadow-sm); 
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 60px;
-            color: var(--brown);
-            position: relative;
-            font-weight: 700;
-            letter-spacing: 2px;
-        }
-
-        section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            border-radius: 2px;
-        }
-
-        section h2::before {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 4px;
-            background: var(--brown);
-            border-radius: 2px;
-        }
-
-        /* 企业简介 */
-        .company-intro {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: 0 8px 40px rgba(139, 90, 43, 0.08);
-            margin-bottom: 40px;
-            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; 
             overflow: hidden;
+            border: 1px solid var(--border);
         }
 
-        .company-intro::before {
-            content: '🌼';
-            position: absolute;
-            top: -30px;
-            right: -20px;
-            font-size: 120px;
-            opacity: 0.05;
+        .product-card::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-dark) 0%, var(--accent) 50%, var(--accent-dark) 100%);
+            transform: scaleX(0);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .company-intro p {
-            font-size: 17px;
-            color: #444;
-            line-height: 2.1;
-            text-indent: 2em;
-            margin-bottom: 22px;
-            position: relative;
+        .product-card:hover::before {
+            transform: scaleX(1);
         }
 
-        .company-intro p:last-child {
-            margin-bottom: 0;
+        .product-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: var(--shadow-lg); 
+            border-color: var(--border-gold);
         }
 
-        /* 企业实力 */
+        .product-image { 
+            height: 180px; 
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-card h3 { 
+            color: var(--text-dark); 
+            margin-bottom: 20px; 
+            font-size: 22px; 
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .product-card p { 
+            color: var(--text-light); 
+            font-size: 15px; 
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .product-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 30px;
+            color: var(--accent); 
+            text-decoration: none; 
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            gap: 8px;
+        }
+
+        .product-link:hover { 
+            color: var(--accent-dark); 
+            gap: 12px;
+        }
+
+        .product-link::after {
+            content: '→';
+            transition: all 0.3s ease;
+        }
+
         .strength-section {
-            background: linear-gradient(180deg, #2A1808 0%, #3D2410 50%, #5D3A1A 100%);
-            margin: 80px -20px;
-            padding: 100px 20px;
+            background: linear-gradient(145deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 120px 100px; 
+            color: white;
             position: relative;
             overflow: hidden;
         }
@@ -424,153 +433,107 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at top right, rgba(245, 199, 111, 0.08) 0%, transparent 50%);
-        }
-
-        .strength-section h2 {
-            color: var(--gold);
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 60px;
-            position: relative;
-            z-index: 1;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(201, 169, 98, 0.04) 1px, transparent 0);
+            background-size: 50px 50px;
         }
 
         .strength-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 35px;
-            max-width: 1400px;
+            max-width: 1400px; 
             margin: 0 auto;
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+            gap: 60px;
             position: relative;
             z-index: 1;
         }
 
-        .strength-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 50px 35px;
-            text-align: center;
-            box-shadow: 
-                0 8px 30px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(245, 199, 111, 0.1) inset;
+        .strength-card { 
+            text-align: center; 
+            padding: 30px;
             transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-
-        .strength-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #FFD700, var(--gold), #D4A574);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .strength-card:hover::before {
-            transform: scaleX(1);
-        }
-
+        
         .strength-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 
-                0 20px 50px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(245, 199, 111, 0.3) inset;
+            transform: translateY(-4px);
         }
-
-        .strength-card .icon-wrapper {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 25px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(245, 199, 111, 0.1));
-            border: 1px solid rgba(245, 199, 111, 0.3);
-            border-radius: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            transition: all 0.4s ease;
-        }
-
-        .strength-card:hover .icon-wrapper {
-            transform: scale(1.1);
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-        }
-
-        .strength-card .number {
-            font-size: 48px;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--brown), var(--brown-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
-        }
-
-        .strength-card .label {
-            font-size: 17px;
-            color: var(--brown);
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .strength-card .desc {
-            font-size: 14px;
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        /* 荣誉资质 */
-        .honor-section {
-            background: linear-gradient(180deg, var(--white) 0%, var(--gold-light) 100%);
-            padding: 60px 20px;
-            margin: 40px -20px;
-        }
-
-        .honor-section h3 {
-            text-align: center;
-            font-size: 30px;
-            color: var(--brown);
-            margin-bottom: 50px;
+        
+        .strength-card .number { 
+            font-size: 64px; 
+            font-weight: 700; 
+            color: var(--accent); 
+            margin-bottom: 18px;
+            letter-spacing: -2px;
+            font-family: 'Inter', sans-serif;
             position: relative;
         }
-
-        .honor-section h3::after {
+        
+        .strength-card .number::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+        
+        .strength-card p { 
+            opacity: 0.9; 
+            margin-top: 15px; 
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .honor-section {
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 120px 100px;
+        }
+
+        .section-title {
+            text-align: center; 
+            color: var(--text-dark); 
+            margin-bottom: 80px;
+            font-size: 38px; 
+            padding-bottom: 25px;
+            position: relative;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background: linear-gradient(90deg, var(--gold), var(--brown));
-            border-radius: 3px;
+            background: linear-gradient(90deg, var(--accent-dark), var(--accent), var(--accent-dark));
+            border-radius: 2px;
         }
 
         .honor-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 30px;
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 40px;
         }
 
         .honor-card {
-            background: var(--white);
-            border-radius: 16px;
-            padding: 35px 25px;
-            text-align: center;
-            box-shadow: 0 6px 25px rgba(139, 90, 43, 0.08);
-            transition: all 0.4s ease;
+            background: var(--bg-white); 
+            padding: 40px 30px; 
+            border-radius: 12px;
+            text-align: center; 
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
             position: relative;
             overflow: hidden;
         }
@@ -580,24 +543,25 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--gold), var(--brown));
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .honor-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(139, 90, 43, 0.15);
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
         }
 
         .honor-card:hover::before {
-            opacity: 1;
+            transform: scaleY(1);
         }
 
-        .honor-icon {
-            font-size: 45px;
+        .honor-card:hover { 
+            transform: translateY(-6px); 
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-gold);
+        }
+
+        .honor-icon { 
+            font-size: 42px; 
             margin-bottom: 20px;
             transition: transform 0.4s ease;
         }
@@ -605,536 +569,63 @@
         .honor-card:hover .honor-icon {
             transform: scale(1.1);
         }
-
-        .honor-card h4 {
-            font-size: 18px;
-            color: var(--brown);
-            margin-bottom: 12px;
+        
+        .honor-card h4 { 
+            color: var(--text-dark); 
+            font-size: 16px; 
+            margin-bottom: 10px; 
             font-weight: 600;
+            letter-spacing: 0.3px;
         }
-
-        .honor-card p {
-            font-size: 14px;
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        /* 产品中心 */
-        #products {
-            background: var(--white);
-            margin: 60px auto;
-            padding: 80px 30px;
-            max-width: 1500px;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(139, 90, 43, 0.08);
-        }
-
-        #products > h2 {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            align-items: stretch;
-            justify-items: center;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 50px;
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 35px rgba(139, 90, 43, 0.08);
-            transition: all 0.4s ease;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            width: 100%;
-            max-width: 380px;
-        }
-
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--gold-light), transparent);
-            border-radius: 0 20px 0 50%;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .product-card:hover::before {
-            opacity: 1;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(139, 90, 43, 0.15);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 220px;
-            flex-shrink: 0;
-            overflow: hidden;
-        }
-
-        .product-image svg {
-            width: 100%;
-            height: 100%;
-            transition: transform 0.5s ease;
-        }
-
-        .product-card:hover .product-image svg {
-            transform: scale(1.08);
-        }
-
-        .product-header {
-            padding: 20px 25px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .product-header .tag {
-            font-size: 12px;
-            padding: 4px 12px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: var(--white);
-            border-radius: 20px;
-            font-weight: 500;
-        }
-
-        .product-header h3 {
-            margin: 0;
-            font-size: 20px;
-            color: var(--brown);
-            flex: 1;
-            padding-left: 15px;
-        }
-
-        .expand-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--gold-light);
-            color: var(--brown);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .product-card:hover .expand-icon {
-            background: var(--gold);
-            transform: rotate(90deg);
-        }
-
-        .product-details {
-            padding: 0 25px 25px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .product-card.active .product-details {
-            max-height: 800px;
-            padding-top: 15px;
-        }
-
-        .product-card.active .expand-icon {
-            transform: rotate(45deg);
-            background: var(--gold);
-        }
-
-        .product-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-            flex-shrink: 0;
-            background: linear-gradient(135deg, #F5C76F 0%, #E8B85C 50%, #D4A04A 100%);
-        }
-
-        .product-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .product-info {
-            padding: 25px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-info .tag {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: var(--brown);
-            padding: 6px 16px;
-            border-radius: 25px;
-            font-size: 12px;
-            margin-bottom: 18px;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(245, 199, 111, 0.3);
-        }
-
-        .product-info h3 {
-            font-size: 22px;
-            color: var(--brown);
-            margin-bottom: 18px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .product-info .section-title {
-            font-size: 15px;
-            color: var(--brown);
-            margin: 20px 0 12px;
-            font-weight: 600;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .product-info .section-title::before {
-            content: '●';
-            color: var(--gold);
-            position: absolute;
-            left: 0;
-            font-size: 14px;
-        }
-
-        .product-info ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .product-info li {
-            font-size: 14px;
-            color: var(--gray);
-            padding: 8px 0;
-            position: relative;
-            padding-left: 22px;
-            line-height: 1.6;
-        }
-
-        .product-info li::before {
-            content: '✓';
-            color: var(--gold);
-            position: absolute;
-            left: 0;
+        
+        .honor-card p { 
+            color: var(--text-muted); 
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 400;
         }
 
-        /* 技术优势 */
-        .tech-section {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 55px;
-            box-shadow: 0 8px 40px rgba(139, 90, 43, 0.08);
-            overflow: hidden;
+        .mission-section {
+            background: linear-gradient(145deg, rgba(201, 169, 98, 0.06) 0%, rgba(201, 169, 98, 0.02) 50%, rgba(201, 169, 98, 0.04) 100%);
+            padding: 100px 100px; 
+            text-align: center;
             position: relative;
         }
 
-        .tech-section::before {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            right: -50px;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, var(--gold-light) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .tech-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-            position: relative;
-        }
-
-        .tech-text h3 {
-            font-size: 24px;
-            color: var(--brown);
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
-
-        .tech-text p {
-            font-size: 16px;
-            color: var(--gray);
-            line-height: 2.1;
-            margin-bottom: 18px;
-        }
-
-        .tech-text ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .tech-text li {
-            font-size: 15px;
-            color: var(--brown);
-            padding: 10px 0;
-            padding-left: 28px;
-            position: relative;
-        }
-
-        .tech-text li::before {
-            content: '★';
-            color: var(--gold);
-            position: absolute;
-            left: 0;
-            font-size: 16px;
-        }
-
-        .tech-image {
-            width: 100%;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(139, 90, 43, 0.15);
-            position: relative;
-        }
-
-        .tech-image img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .tech-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .tech-image::after {
+        .mission-section::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(245, 199, 111, 0.1) 0%, transparent 50%);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
         }
 
-        /* 原料优势 */
-        .material-section {
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 50%, var(--brown-light) 100%);
-            border-radius: 20px;
-            padding: 55px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .material-section::before {
-            content: '';
-            position: absolute;
-            top: -100px;
-            left: -100px;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-        }
-
-        .material-section::after {
-            content: '';
-            position: absolute;
-            bottom: -80px;
-            right: -80px;
-            width: 250px;
-            height: 250px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 50%;
-        }
-
-        .material-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-            position: relative;
-        }
-
-        .material-image {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            transition: transform 0.4s ease;
-        }
-
-        .material-image:hover {
-            transform: scale(1.05);
-        }
-
-        .material-image img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-        }
-
-        .material-text h3 {
-            font-size: 28px;
-            color: var(--white);
-            margin-bottom: 25px;
-            font-weight: 700;
-        }
-
-        .material-text p {
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 2.1;
-            margin-bottom: 15px;
-        }
-
-        /* 联系我们 */
-        #contact {
-            padding-bottom: 0;
-        }
-
-        .contact-section {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 55px;
-            box-shadow: 0 8px 40px rgba(139, 90, 43, 0.08);
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 35px;
-            margin-bottom: 45px;
-        }
-
-        .contact-item {
-            text-align: center;
-            padding: 30px 25px;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--white) 100%);
-            border-radius: 15px;
-            border: 1px solid var(--cream-dark);
-            transition: all 0.4s ease;
-            cursor: pointer;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(139, 90, 43, 0.1);
-            border-color: var(--gold);
-        }
-
-        .contact-item .icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-            color: var(--brown);
-            transition: transform 0.4s ease;
-        }
-
-        .contact-item:hover .icon {
-            transform: scale(1.1);
-            color: var(--gold-dark);
-        }
-
-        .contact-item h4 {
-            font-size: 16px;
-            color: var(--brown);
-            margin-bottom: 12px;
+        .mission-section h2 { 
+            color: var(--text-dark); 
+            font-size: 32px; 
+            margin-bottom: 28px; 
             font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .mission-section p { 
+            color: var(--text-light); 
+            font-size: 17px; 
+            line-height: 2; 
+            max-width: 850px; 
+            margin: 0 auto;
+            font-weight: 400;
+            letter-spacing: 0.3px;
         }
 
-        .contact-item p, .contact-item a {
-            font-size: 15px;
-            color: var(--gray);
-            line-height: 1.7;
-        }
-
-        .contact-item a {
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item a:hover {
-            color: var(--brown);
-        }
-
-        .official-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: var(--brown);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-top: 12px;
-        }
-
-        .map-container {
-            width: 100%;
-            height: 320px;
-            background: var(--cream);
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.4s ease;
-        }
-
-        .map-container:hover {
-            box-shadow: 0 12px 30px rgba(139, 90, 43, 0.15);
-        }
-
-        .map-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .map-container:hover img {
-            transform: scale(1.02);
-        }
-
-        .map-overlay {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            background: rgba(139, 90, 43, 0.9);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-
-        .map-container:hover .map-overlay {
-            background: rgba(139, 90, 43, 1);
-            transform: translateY(-3px);
-        }
-
-        /* 页脚 */
         footer {
-            background: linear-gradient(180deg, var(--brown) 0%, #7A4F25 100%);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 60px 20px;
-            margin-top: 80px;
+            background: var(--primary); 
+            padding: 80px 100px; 
+            color: rgba(255, 255, 255, 0.85); 
+            text-align: center;
             position: relative;
-            overflow: hidden;
         }
 
         footer::before {
@@ -1142,894 +633,377 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.3), transparent);
         }
 
-        .footer-content {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 45px;
-            text-align: center;
+        footer .footer-logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--bg-white);
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-family: 'Noto Serif SC', serif;
         }
 
-        .footer-section h3 {
-            font-size: 19px;
-            margin-bottom: 20px;
-            font-weight: 600;
-            color: var(--gold);
-        }
-
-        .footer-section p, .footer-section a {
+        footer .tagline {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
+            opacity: 0.7;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+        }
+
+        footer .contact-info { 
+            margin-top: 20px; 
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        footer a { 
+            color: var(--accent); 
             text-decoration: none;
+            font-weight: 500;
             transition: color 0.3s ease;
         }
 
-        .footer-section a:hover {
-            color: var(--gold);
+        footer a:hover { 
+            color: var(--accent-light);
         }
 
-        .footer-section .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
+        footer .divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 35px auto;
         }
 
-        .footer-section .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        .footer-section .social-links a:hover {
-            background: var(--gold);
-            color: var(--brown);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            max-width: 1300px;
-            margin: 40px auto 0;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-
-        .footer-bottom p {
+        footer .copyright {
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
+            opacity: 0.5;
+            letter-spacing: 0.3px;
         }
 
-        /* 地图弹窗 */
-        .map-modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.75);
-            overflow: auto;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
-
-        .modal-content {
-            background-color: var(--white);
-            margin: 8% auto;
-            padding: 30px;
-            border-radius: 20px;
-            width: 92%;
-            max-width: 650px;
-            position: relative;
-            animation: slideIn 0.35s ease;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes slideIn {
-            from {transform: translateY(-30px) scale(0.95); opacity: 0;}
-            to {transform: translateY(0) scale(1); opacity: 1;}
-        }
-
-        .close-btn {
-            color: var(--gray);
-            float: right;
-            font-size: 32px;
-            font-weight: 300;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            line-height: 1;
-        }
-
-        .close-btn:hover {
-            color: var(--brown);
-            transform: rotate(90deg);
-        }
-
-        .modal-content h3 {
-            color: var(--brown);
-            margin-bottom: 20px;
-            font-size: 22px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .map-iframe {
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 15px;
-            box-shadow: 0 8px 25px rgba(139, 90, 43, 0.15);
-        }
-
-        /* 响应式 */
         @media (max-width: 768px) {
-            nav {
-                padding: 14px 20px;
+            nav { padding: 16px 25px; }
+            nav.scrolled { padding: 12px 25px; }
+            
+            .logo { font-size: 20px; }
+            .logo::before { width: 30px; height: 30px; }
+            
+            .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                width: 100%; 
+                background: rgba(13, 13, 13, 0.98); 
+                padding: 15px 0; 
+                gap: 0;
+            }
+            
+            .nav-menu.active { display: flex; }
+            .nav-item > a { 
+                padding: 16px 25px; 
+                font-size: 14px;
+            }
+            
+            .nav-item > a::after { display: none; }
+            
+            .dropdown { 
+                position: static; 
+                box-shadow: none; 
+                border: none; 
+                background: rgba(255, 255, 255, 0.03);
+                opacity: 1; 
+                visibility: visible; 
+                transform: none; 
+                padding-left: 20px;
+                min-width: 100%;
+            }
+            
+            .dropdown::before { display: none; }
+            
+            .dropdown a { padding: 12px 25px; }
+            
+            .menu-icon { display: block; }
+
+            .hero { 
+                padding: 150px 25px 120px; 
+                min-height: auto;
+            }
+            
+            .hero-subtitle { font-size: 12px; letter-spacing: 2px; }
+            .hero h1 { font-size: 38px; }
+            .hero p { font-size: 16px; }
+
+            .btn { 
+                padding: 15px 38px; 
+                margin: 10px 0; 
+                display: block; 
+                max-width: 220px; 
+                margin-left: auto; 
+                margin-right: auto;
             }
 
-            nav ul {
-                display: none;
-            }
+            .hero-decoration { display: none; }
 
-            .menu-icon {
-                display: block;
-            }
+            .products-preview { padding: 80px 25px; gap: 30px; }
+            
+            .product-card { padding: 35px 25px; }
+            .product-image { height: 140px; }
+            .product-card h3 { font-size: 20px; }
+            .product-card p { font-size: 14px; }
 
-            header {
-                padding: 130px 20px 100px;
-            }
+            .strength-section { padding: 80px 25px; }
+            .strength-cards { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+            .strength-card .number { font-size: 48px; }
 
-            header h1 {
-                font-size: 32px;
-            }
+            .honor-section { padding: 80px 25px; }
+            .section-title { font-size: 28px; margin-bottom: 50px; }
+            .honor-cards { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+            .honor-card { padding: 30px 20px; }
+            .honor-icon { font-size: 32px; }
 
-            header .subtitle {
-                font-size: 17px;
-            }
+            .mission-section { padding: 60px 25px; }
+            .mission-section h2 { font-size: 26px; }
+            .mission-section p { font-size: 15px; }
 
-            .btn-group {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 280px;
-                text-align: center;
-            }
-
-            section {
-                padding: 60px 20px;
-            }
-
-            section h2 {
-                font-size: 28px;
-            }
-
-            .company-intro {
-                padding: 30px;
-            }
-
-            .company-intro p {
-                font-size: 15px;
-            }
-
-            .tech-content {
-                grid-template-columns: 1fr;
-                gap: 35px;
-            }
-
-            .strength-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .products {
-                grid-template-columns: 1fr;
-                padding: 0 15px;
-            }
-
-            .product-card {
-                max-width: 100%;
-            }
-
-            .contact-section {
-                padding: 30px;
-            }
-
-            .contact-info {
-                grid-template-columns: 1fr;
-            }
-
-            .material-section {
-                padding: 45px 25px;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
+            footer { padding: 60px 25px; }
+            footer .contact-info { gap: 20px; }
         }
     </style>
 </head>
 <body>
-    <!-- 滚动进度条 -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-    
-    <!-- 鼠标跟随光效 -->
-    <div class="cursor-glow" id="cursorGlow"></div>
-    
-    <!-- 粒子画布 -->
-    <canvas id="particles-canvas"></canvas>
-    
-    <!-- 导航栏 -->
-    <nav id="navbar">
+    <nav id="main-nav">
         <div class="logo">华彬力美科技</div>
-        <ul>
-            <li><a href="#home">首页</a></li>
-            <li><a href="#about">关于我们</a></li>
-            <li><a href="#products">产品中心</a></li>
-            <li><a href="#contact">联系我们</a></li>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="index.html">首页</a>
+            </li>
+            <li class="nav-item">
+                <a href="about.html">关于我们</a>
+                <div class="dropdown">
+                    <a href="about.html#overview">企业概况</a>
+                    <a href="about.html#strength">企业实力</a>
+                    <a href="about.html#tech">技术优势</a>
+                    <a href="about.html#material">原料保障</a>
+                    <a href="about.html#achievements">项目成果</a>
+                    <a href="about.html#vision">未来展望</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">产品中心</a>
+                <div class="dropdown">
+                    <a href="products.html#oil">桂花精油</a>
+                    <a href="products.html#cell">桂花细胞液</a>
+                    <a href="products.html#skincare">护肤品原料</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="hr.html">人力资源</a>
+                <div class="dropdown">
+                    <a href="hr.html#talent">人才理念</a>
+                    <a href="hr.html#social">社会招聘</a>
+                    <a href="hr.html#campus">校园招聘</a>
+                    <a href="hr.html#train">培训发展</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html">联系我们</a>
+            </li>
         </ul>
         <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
     </nav>
 
-    <!-- 移动端菜单 -->
-    <div class="mobile-menu" id="mobileMenu">
-        <ul>
-            <li><a href="#home" onclick="toggleMenu()">首页</a></li>
-            <li><a href="#about" onclick="toggleMenu()">关于我们</a></li>
-            <li><a href="#products" onclick="toggleMenu()">产品中心</a></li>
-            <li><a href="#contact" onclick="toggleMenu()">联系我们</a></li>
-        </ul>
-    </div>
-
-    <!-- 首页横幅 -->
-    <header id="home">
-        <span class="decorative-leaf leaf-1">🌿</span>
-        <span class="decorative-leaf leaf-2">🌿</span>
-        <span class="decorative-leaf leaf-3">🌿</span>
-        <div class="header-content">
+    <div class="hero">
+        <div class="hero-pattern"></div>
+        <div class="hero-decoration">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#F5C76F"/>
+                        <stop offset="100%" style="stop-color:#D4A04A"/>
+                    </linearGradient>
+                </defs>
+                <circle cx="50" cy="50" r="38" fill="url(#heroGrad)"/>
+                <circle cx="50" cy="50" r="22" fill="#FFEFD5"/>
+                <ellipse cx="38" cy="40" rx="7" ry="12" fill="url(#heroGrad)" transform="rotate(-25,38,40)"/>
+                <ellipse cx="62" cy="40" rx="7" ry="12" fill="url(#heroGrad)" transform="rotate(25,62,40)"/>
+                <ellipse cx="40" cy="60" rx="7" ry="12" fill="url(#heroGrad)" transform="rotate(-65,40,60)"/>
+                <ellipse cx="60" cy="60" rx="7" ry="12" fill="url(#heroGrad)" transform="rotate(65,60,60)"/>
+                <ellipse cx="50" cy="32" rx="7" ry="12" fill="url(#heroGrad)"/>
+            </svg>
+        </div>
+        <div class="hero-content">
+            <div class="hero-subtitle">源自中国桂花之乡</div>
             <h1>华彬力美科技（湖北）有限公司</h1>
-            <p class="subtitle">华彬力美·源自咸宁金桂，萃取自然本味<br>专注桂花深加工，打造华中地区桂花精油、香精、香料系列产品生产基地</p>
-            <div class="btn-group">
-                <a href="#products" class="btn">查看产品</a>
-                <a href="#contact" class="btn btn-secondary">联系我们</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- 关于我们 -->
-    <section id="about">
-        <h2>关于我们</h2>
-        
-        <div class="company-intro">
-            <p>华彬力美科技（湖北）有限公司是华彬集团子公司，华彬集团扎根咸宁20年，深耕大健康产业，旗下有红牛、芙丝（VOSS）水、战马等知名品牌。公司专注桂花深加工，致力于打造华中地区桂花精油、香精、香料系列产品生产基地，是咸宁重点农业产业化项目。</p>
-            <p>企业投资1.3亿元建设标准化生产基地，2024年4月开工，12月试产，8个月实现当年规划、当年建成、当年入规，刷新"咸宁速度"。年处理鲜桂花能力达200吨（折合40万斤），占咸宁全市鲜桂花年产量的50%。2025年营收7000余万元，纳税超500万元。</p>
-            <p>公司联合成立"咸宁市桂花深加工技术企校联合创新中心"，创新性引入国际前沿的柱式真空冷凝干燥技术和超临界二氧化碳流体技术，攻克桂花提取关键难题，技术达到国际前沿水平。依托科技赋能，推动桂花产业提质增效，让咸宁桂花走出国门、香飘世界，助力中国桂花城建设与乡村振兴。</p>
-        </div>
-
-        <!-- 企业实力数据 -->
-        <div class="strength-section">
-            <h2>企业实力</h2>
-            <div class="strength-cards">
-                <div class="strength-card">
-                    <div class="icon-wrapper">💰</div>
-                    <div class="number">1.3亿</div>
-                    <div class="label">投资金额</div>
-                    <div class="desc">建设标准化生产基地</div>
-                </div>
-                <div class="strength-card">
-                    <div class="icon-wrapper">🏭</div>
-                    <div class="number">200吨</div>
-                    <div class="label">年处理鲜桂花</div>
-                    <div class="desc">占咸宁年产量50%</div>
-                </div>
-                <div class="strength-card">
-                    <div class="icon-wrapper">📈</div>
-                    <div class="number">7000万</div>
-                    <div class="label">年营收</div>
-                    <div class="desc">2025年预计营收</div>
-                </div>
-                <div class="strength-card">
-                    <div class="icon-wrapper">🌼</div>
-                    <div class="number">40万斤</div>
-                    <div class="label">桂花供应协议</div>
-                    <div class="desc">保障原料稳定供应</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 技术优势 -->
-        <div class="tech-section">
-            <div class="tech-content">
-                <div class="tech-text">
-                    <h3>技术优势</h3>
-                    <p>联合成立"咸宁市桂花深加工技术企校联合创新中心"，创新性引入国际前沿的柱式真空冷凝干燥技术和超临界二氧化碳流体技术。</p>
-                    <p>攻克桂花提取关键难题，技术达到国际前沿水平，可完美还原桂花自然香气，保留桂花本真风味，工艺环保高效。</p>
-                    <ul>
-                        <li>超临界二氧化碳流体技术低温萃取</li>
-                        <li>柱式真空冷凝干燥技术</li>
-                        <li>无添加、纯度高，品质达到国际标准</li>
-                        <li>获得亚太地区香料协会及芬美意认可</li>
-                    </ul>
-                </div>
-                <div class="tech-image">
-                    <img src="https://picsum.photos/500/400?random=2" alt="现代化生产设备">
-                </div>
-            </div>
-        </div>
-
-        <!-- 原料优势 -->
-        <div class="material-section">
-            <div class="material-content">
-                <div class="material-image">
-                    <img src="https://picsum.photos/500/400?random=3" alt="咸宁桂花种植基地">
-                </div>
-                <div class="material-text">
-                    <h3>原料优势</h3>
-                    <p>咸宁桂花资源丰富，全市桂花种植面积超11万亩，拥有金桂、银桂、丹桂、四季桂四大品种群，百年古桂数量占全国90%以上。</p>
-                    <p>华彬力美依托本地资源，原料供应稳定且品质优良，从源头保障产品质量。已与咸宁市咸安区桂花镇签订40万斤桂花供应协议，保障原料稳定供应，助力当地农民增收。</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 荣誉资质 -->
-        <div class="honor-section">
-            <h3>荣誉资质</h3>
-            <div class="honor-cards">
-                <div class="honor-card">
-                    <div class="honor-icon">🏆</div>
-                    <h4>国家级高新技术企业</h4>
-                    <p>荣获国家高新技术企业认定</p>
-                </div>
-                <div class="honor-card">
-                    <div class="honor-icon">📜</div>
-                    <h4>ISO质量认证</h4>
-                    <p>ISO 9001质量管理体系认证</p>
-                </div>
-                <div class="honor-card">
-                    <div class="honor-icon">⭐</div>
-                    <h4>亚太香料协会会员</h4>
-                    <p>获得亚太地区香料协会认可</p>
-                </div>
-                <div class="honor-card">
-                    <div class="honor-icon">💎</div>
-                    <h4>芬美意认证供应商</h4>
-                    <p>国际巨头芬美意认可供应商</p>
-                </div>
-                <div class="honor-card">
-                    <div class="honor-icon">🌾</div>
-                    <h4>农业产业化重点龙头企业</h4>
-                    <p>咸宁重点农业产业化项目</p>
-                </div>
-                <div class="honor-card">
-                    <div class="honor-icon">🔬</div>
-                    <h4>企校联合创新中心</h4>
-                    <p>咸宁市桂花深加工技术创新中心</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 产品中心 -->
-    <section id="products">
-        <h2>产品中心</h2>
-        <div class="products">
-            <!-- 桂花精油 -->
-            <div class="product-card" onclick="toggleProduct(this)">
-                <div class="product-image">
-                    <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#F5C76F;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#D4A04A;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect width="100" height="80" fill="url(#grad1)"/>
-                        <ellipse cx="50" cy="30" rx="25" ry="35" fill="white" fill-opacity="0.3"/>
-                        <rect x="42" y="10" width="16" height="45" rx="3" fill="white" fill-opacity="0.4"/>
-                        <circle cx="50" cy="8" r="8" fill="#8B5A2B"/>
-                        <circle cx="35" cy="25" r="4" fill="#FFE4B5" fill-opacity="0.6"/>
-                        <circle cx="65" cy="40" r="3" fill="#FFE4B5" fill-opacity="0.5"/>
-                        <circle cx="45" cy="55" r="3" fill="#FFE4B5" fill-opacity="0.5"/>
-                    </svg>
-                </div>
-                <div class="product-header">
-                    <span class="tag">核心产品</span>
-                    <h3>桂花精油</h3>
-                    <span class="expand-icon">+</span>
-                </div>
-                <div class="product-details">
-                    <div class="section-title">核心工艺</div>
-                    <ul>
-                        <li>采用咸宁鲜桂花，通过超临界二氧化碳流体技术低温萃取</li>
-                        <li>无添加、纯度高，完美还原桂花自然香气</li>
-                        <li>工艺环保高效，保留桂花本真风味</li>
-                    </ul>
-                    <div class="section-title">应用场景</div>
-                    <ul>
-                        <li>美妆厂商用于护肤品调配、香薰制作、食品调味</li>
-                        <li>高端消费群体用于香薰、个人护理</li>
-                    </ul>
-                    <div class="section-title">核心优势</div>
-                    <ul>
-                        <li>原料源自咸宁优质桂花基地，源头可控</li>
-                        <li>国际前沿萃取技术，品质达到国际标准</li>
-                        <li>获得亚太地区香料协会及芬美意认可</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- 桂花细胞液 -->
-            <div class="product-card" onclick="toggleProduct(this)">
-                <div class="product-image">
-                    <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" style="stop-color:#E8F4F8;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#C5DDE8;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect width="100" height="80" fill="url(#grad2)"/>
-                        <rect x="35" y="20" width="30" height="50" rx="8" fill="white" stroke="#E8F4F8" stroke-width="2"/>
-                        <rect x="38" y="25" width="24" height="40" rx="5" fill="url(#grad2)"/>
-                        <circle cx="50" cy="18" r="6" fill="#8B5A2B"/>
-                        <circle cx="42" cy="40" r="3" fill="#87CEEB" fill-opacity="0.6"/>
-                        <circle cx="58" cy="45" r="2" fill="#87CEEB" fill-opacity="0.5"/>
-                        <circle cx="48" cy="55" r="2.5" fill="#87CEEB" fill-opacity="0.5"/>
-                        <ellipse cx="30" cy="35" rx="8" ry="12" fill="#FFEFD5" fill-opacity="0.4"/>
-                    </svg>
-                </div>
-                <div class="product-header">
-                    <span class="tag">核心产品</span>
-                    <h3>桂花细胞液</h3>
-                    <span class="expand-icon">+</span>
-                </div>
-                <div class="product-details">
-                    <div class="section-title">核心工艺</div>
-                    <ul>
-                        <li>采用柱式真空冷凝干燥技术低温冷榨锁鲜</li>
-                        <li>富含桂花活性成分，无添加、无防腐剂</li>
-                        <li>技术达到国际前沿水平，攻克活性成分流失难题</li>
-                    </ul>
-                    <div class="section-title">应用场景</div>
-                    <ul>
-                        <li>美妆厂商：面膜、爽肤水、精华等护肤品研发</li>
-                        <li>温和滋养、提亮肤色，适配各类肤质</li>
-                        <li>可根据厂商需求定制浓度</li>
-                    </ul>
-                    <div class="section-title">核心优势</div>
-                    <ul>
-                        <li>技术领先，活性成分含量高</li>
-                        <li>无添加，安全温和</li>
-                        <li>源头直供，性价比高</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- 护肤品原料 -->
-            <div class="product-card" onclick="toggleProduct(this)">
-                <div class="product-image">
-                    <svg viewBox="0 0 100 80" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#FFF8DC;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#FFE4B5;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect width="100" height="80" fill="url(#grad3)"/>
-                        <rect x="30" y="15" width="40" height="55" rx="4" fill="white" stroke="#FFE4B5" stroke-width="2"/>
-                        <rect x="35" y="20" width="30" height="45" fill="url(#grad3)"/>
-                        <rect x="40" y="10" width="20" height="12" rx="2" fill="#8B5A2B"/>
-                        <circle cx="35" cy="35" r="4" fill="#F5C76F" fill-opacity="0.6"/>
-                        <circle cx="55" cy="30" r="3" fill="#F5C76F" fill-opacity="0.5"/>
-                        <circle cx="48" cy="50" r="3.5" fill="#F5C76F" fill-opacity="0.5"/>
-                        <circle cx="60" cy="45" r="2.5" fill="#F5C76F" fill-opacity="0.6"/>
-                        <circle cx="38" cy="55" r="2" fill="#F5C76F" fill-opacity="0.5"/>
-                    </svg>
-                </div>
-                <div class="product-header">
-                    <span class="tag">核心产品</span>
-                    <h3>护肤品原料</h3>
-                    <span class="expand-icon">+</span>
-                </div>
-                <div class="product-details">
-                    <div class="section-title">核心工艺</div>
-                    <ul>
-                        <li>以桂花提取物、桂花精油衍生物为核心</li>
-                        <li>采用先进深加工技术，生产流程规范</li>
-                        <li>品质可控，符合国际标准</li>
-                    </ul>
-                    <div class="section-title">应用场景</div>
-                    <ul>
-                        <li>美妆厂商：面霜、精华、护手霜、身体乳等</li>
-                        <li>助力厂商打造天然桂花系护肤品</li>
-                        <li>贴合大健康产业发展趋势</li>
-                    </ul>
-                    <div class="section-title">核心优势</div>
-                    <ul>
-                        <li>品质符合国际标准，可定制浓度</li>
-                        <li>源头直供，供货稳定</li>
-                        <li>获得国际客户认可</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 联系我们 -->
-    <section id="contact">
-        <h2>联系我们</h2>
-        <div class="contact-section">
-            <div class="contact-info">
-                <div class="contact-item map-trigger" onclick="showMap()">
-                    <div class="icon">📍</div>
-                    <h4>企业地址</h4>
-                    <p style="color: var(--brown); cursor: pointer; text-decoration: underline;">咸宁国家高新技术产业开发区贺胜路88号</p>
-                    <span class="official-badge">点击查看地图</span>
-                </div>
-                <div class="contact-item">
-                    <div class="icon">👤</div>
-                    <h4>联系人</h4>
-                    <p>许欣叶</p>
-                </div>
-                <div class="contact-item">
-                    <div class="icon">📞</div>
-                    <h4>联系电话</h4>
-                    <a href="tel:17371473236">17371473236</a>
-                </div>
-                <div class="contact-item">
-                    <div class="icon">✉️</div>
-                    <h4>电子邮箱</h4>
-                    <a href="mailto:1913672532@qq.com">1913672532@qq.com</a>
-                </div>
-            </div>
-            <div class="map-container" onclick="showMap()">
-                <img src="https://picsum.photos/800/320?random=1" alt="工业园区">
-                <div class="map-overlay">📍 点击查看详细地图</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 地图弹窗 -->
-    <div id="mapModal" class="map-modal" onclick="closeMap()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeMap()">&times;</span>
-            <h3>📍 企业位置</h3>
-            <div class="map-iframe">
-                <iframe src="https://api.map.baidu.com/marker?location=29.8325,114.3228&title=华彬力美科技（湖北）有限公司&content=咸宁国家高新技术产业开发区贺胜路88号&output=html&src=webapp.baidu.openAPIdemo" width="100%" height="420" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-            </div>
-            <p style="margin-top: 15px; text-align: center; color: var(--brown); font-weight: 500;">咸宁国家高新技术产业开发区贺胜路88号</p>
-            <div style="text-align: center; margin-top: 10px;">
-                <a href="https://api.map.baidu.com/marker?location=29.8325,114.3228&title=华彬力美科技（湖北）有限公司&content=咸宁国家高新技术产业开发区贺胜路88号&output=html&src=webapp.baidu.openAPIdemo" target="_blank" style="display: inline-block; background: var(--gold); color: var(--brown); padding: 10px 25px; border-radius: 25px; text-decoration: none; font-weight: 500; transition: all 0.3s;">🚀 打开百度地图导航</a>
+            <p>依托科技赋能，萃取自然本味，致力于桂花深加工产业的创新发展</p>
+            <div>
+                <a href="products.html" class="btn">查看产品</a>
+                <a href="about.html" class="btn btn-secondary">了解更多</a>
             </div>
         </div>
     </div>
 
-    <!-- 页脚 -->
+    <div class="products-preview">
+        <div class="product-card">
+            <div class="product-image">
+                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="oilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#F5C76F"/>
+                            <stop offset="100%" style="stop-color:#D4A04A"/>
+                        </linearGradient>
+                        <linearGradient id="oilGradV" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(245,199,111,0.8)"/>
+                            <stop offset="100%" style="stop-color:rgba(212,160,74,0.9)"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="30" y="25" width="60" height="90" rx="8" fill="rgba(245,199,111,0.08)"/>
+                    <ellipse cx="60" cy="70" rx="22" ry="40" fill="url(#oilGradV)"/>
+                    <ellipse cx="60" cy="70" rx="18" ry="35" fill="url(#oilGradV)" opacity="0.95"/>
+                    <rect x="42" y="30" width="36" height="10" rx="2" fill="#7A4D2B"/>
+                    <rect x="50" y="25" width="20" height="6" rx="1" fill="#5D3A1A"/>
+                    <ellipse cx="60" cy="30" rx="8" ry="3" fill="#7A4D2B"/>
+                    <ellipse cx="52" cy="55" rx="4" ry="6" fill="white" opacity="0.25"/>
+                    <ellipse cx="65" cy="65" rx="3" ry="5" fill="white" opacity="0.2"/>
+                    <circle cx="60" cy="18" r="7" fill="url(#oilGrad)"/>
+                    <path d="M60,11 Q64,16 64,21 Q60,19 56,21 Q56,16 60,11" fill="#7A4D2B"/>
+                </svg>
+            </div>
+            <h3>桂花精油</h3>
+            <p>采用超临界CO₂萃取技术，低温萃取，完美还原桂花自然香气，无添加、纯度高。</p>
+            <a href="products.html" class="product-link">了解详情</a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="cellGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(135,206,235,0.2)"/>
+                            <stop offset="100%" style="stop-color:rgba(135,206,235,0.45)"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="35" y="20" width="50" height="95" rx="10" fill="rgba(135,206,235,0.05)"/>
+                    <ellipse cx="60" cy="72" rx="18" ry="42" fill="white" stroke="#A8D4E3" stroke-width="1.5"/>
+                    <ellipse cx="60" cy="72" rx="14" ry="36" fill="url(#cellGrad)"/>
+                    <rect x="45" y="25" width="30" height="8" rx="2" fill="#5D3A1A"/>
+                    <rect x="50" y="21" width="20" height="6" rx="1" fill="#3D2410"/>
+                    <circle cx="52" cy="60" r="3" fill="#87CEEB" opacity="0.5"/>
+                    <circle cx="65" cy="55" r="3.5" fill="#87CEEB" opacity="0.4"/>
+                    <circle cx="57" cy="75" r="2.5" fill="#87CEEB" opacity="0.6"/>
+                    <circle cx="68" cy="70" r="2" fill="#87CEEB" opacity="0.5"/>
+                    <circle cx="55" cy="88" r="2.5" fill="#87CEEB" opacity="0.4"/>
+                    <circle cx="60" cy="16" r="6" fill="#87CEEB"/>
+                </svg>
+            </div>
+            <h3>桂花细胞液</h3>
+            <p>柱式真空冷凝干燥技术，低温冷榨锁鲜，富含桂花活性成分，无添加、无防腐剂。</p>
+            <a href="products.html" class="product-link">了解详情</a>
+        </div>
+
+        <div class="product-card">
+            <div class="product-image">
+                <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FDF5E0"/>
+                            <stop offset="100%" style="stop-color:#F5C76F"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="35" y="25" width="50" height="90" rx="6" fill="rgba(253,245,224,0.4)"/>
+                    <rect x="40" y="30" width="40" height="80" rx="4" fill="white" stroke="#E8D4A8" stroke-width="1.5"/>
+                    <rect x="40" y="25" width="40" height="8" rx="2" fill="#7A4D2B"/>
+                    <rect x="40" y="45" width="40" height="55" fill="rgba(245,199,111,0.12)"/>
+                    <rect x="45" y="52" width="30" height="42" fill="rgba(245,199,111,0.22)"/>
+                    <circle cx="52" cy="65" r="2" fill="#8B5A2B" opacity="0.35"/>
+                    <circle cx="62" cy="72" r="1.5" fill="#8B5A2B" opacity="0.3"/>
+                    <circle cx="55" cy="80" r="2" fill="#8B5A2B" opacity="0.32"/>
+                    <circle cx="65" cy="85" r="1" fill="#8B5A2B" opacity="0.38"/>
+                    <circle cx="60" cy="20" r="6" fill="#F5C76F"/>
+                </svg>
+            </div>
+            <h3>护肤品原料</h3>
+            <p>以桂花提取物为核心，标准化生产流程，品质可控，源头直供，适配各类护肤品研发。</p>
+            <a href="products.html" class="product-link">了解详情</a>
+        </div>
+    </div>
+
+    <div class="strength-section">
+        <div class="strength-cards">
+            <div class="strength-card">
+                <div class="number">1.3亿</div>
+                <p>投资建设生产基地</p>
+            </div>
+            <div class="strength-card">
+                <div class="number">200吨</div>
+                <p>年处理鲜桂花能力</p>
+            </div>
+            <div class="strength-card">
+                <div class="number">50%</div>
+                <p>咸宁桂花产量占比</p>
+            </div>
+            <div class="strength-card">
+                <div class="number">40万斤</div>
+                <p>桂花供应协议</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="honor-section">
+        <h2 class="section-title">荣誉资质</h2>
+        <div class="honor-cards">
+            <div class="honor-card"><div class="honor-icon">🏆</div><h4>高新技术企业</h4><p>国家级认定</p></div>
+            <div class="honor-card"><div class="honor-icon">📜</div><h4>ISO认证</h4><p>质量管理体系</p></div>
+            <div class="honor-card"><div class="honor-icon">⭐</div><h4>亚太香料协会</h4><p>会员单位</p></div>
+            <div class="honor-card"><div class="honor-icon">💎</div><h4>芬美意认证</h4><p>优质供应商</p></div>
+            <div class="honor-card"><div class="honor-icon">🌾</div><h4>农业产业化</h4><p>重点龙头企业</p></div>
+            <div class="honor-card"><div class="honor-icon">🔬</div><h4>企校创新中心</h4><p>技术研发</p></div>
+        </div>
+    </div>
+
+    <div class="mission-section">
+        <h2>企业使命</h2>
+        <p>依托科技赋能，推动桂花产业提质增效，让咸宁桂花走出国门、香飘世界，助力中国桂花城建设与乡村振兴，践行企业社会责任。</p>
+    </div>
+
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>华彬力美科技</h3>
-                <p>专注桂花深加工，打造华中地区桂花精油、香精、香料系列产品生产基地</p>
-            </div>
-            <div class="footer-section">
-                <h3>联系我们</h3>
-                <p>地址：咸宁国家高新技术产业开发区贺胜路88号</p>
-                <p>电话：<a href="tel:17371473236">17371473236</a></p>
-                <p>邮箱：<a href="mailto:1913672532@qq.com">1913672532@qq.com</a></p>
-            </div>
-            <div class="footer-section">
-                <h3>关注我们</h3>
-                <div class="social-links">
-                    <a href="#" title="微信">💬</a>
-                    <a href="#" title="微博">📱</a>
-                    <a href="#" title="官网">🌐</a>
-                </div>
-            </div>
+        <div class="footer-logo">华彬力美科技</div>
+        <div class="tagline">专注桂花深加工 | 源自咸宁金桂</div>
+        <div class="contact-info">
+            <a href="tel:17371473236">📞 17371473236</a>
+            <a href="mailto:1913672532@qq.com">✉️ 1913672532@qq.com</a>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 华彬力美科技（湖北）有限公司. 保留所有权利.</p>
-        </div>
+        <div class="divider"></div>
+        <div class="copyright">© 2024 华彬力美科技（湖北）有限公司 版权所有</div>
     </footer>
 
     <script>
-        // 移动端菜单切换
         function toggleMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+            const nav = document.querySelector('.nav-menu');
+            nav.classList.toggle('active');
         }
 
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 70;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                    // 关闭移动端菜单
-                    document.getElementById('mobileMenu').style.display = 'none';
-                }
-            });
-        });
-
-        // 点击外部关闭移动端菜单
         document.addEventListener('click', function(e) {
-            const nav = document.querySelector('nav');
-            const mobileMenu = document.getElementById('mobileMenu');
-            if (!nav.contains(e.target) && mobileMenu.style.display === 'block') {
-                mobileMenu.style.display = 'none';
+            const nav = document.querySelector('.nav-menu');
+            if (!e.target.closest('nav') && nav.classList.contains('active')) {
+                nav.classList.remove('active');
             }
         });
 
-        // 产品卡片展开/收起功能
-        function toggleProduct(card) {
-            card.classList.toggle('active');
-        }
-
-        // 地图弹窗功能
-        function showMap() {
-            const modal = document.getElementById('mapModal');
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMap() {
-            const modal = document.getElementById('mapModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // ESC键关闭弹窗
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeMap();
-            }
-        });
-
-        // 添加滚动动画
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(30px)';
-                section.style.transition = 'all 0.6s ease';
-                observer.observe(section);
-            });
-        });
-
-        // ==================== 高级效果 ====================
-
-        // 1. 滚动进度条
         window.addEventListener('scroll', function() {
-            const scrollProgress = document.getElementById('scrollProgress');
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            scrollProgress.style.width = scrollPercent + '%';
-        });
-
-        // 2. 鼠标跟随光效
-        const cursorGlow = document.getElementById('cursorGlow');
-        let mouseX = 0, mouseY = 0;
-        let currentX = 0, currentY = 0;
-
-        document.addEventListener('mousemove', function(e) {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        function animateCursor() {
-            currentX += (mouseX - currentX) * 0.1;
-            currentY += (mouseY - currentY) * 0.1;
-            cursorGlow.style.left = currentX + 'px';
-            cursorGlow.style.top = currentY + 'px';
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // 3. 粒子动画系统
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        // 桂花粒子类
-        class Particle {
-            constructor() {
-                this.reset();
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
             }
-
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height - canvas.height;
-                this.size = Math.random() * 4 + 2;
-                this.speedY = Math.random() * 1 + 0.5;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.opacity = Math.random() * 0.6 + 0.2;
-                this.rotation = Math.random() * 360;
-                this.rotationSpeed = Math.random() * 2 - 1;
-                this.color = `rgba(245, 199, 111, ${this.opacity})`;
-            }
-
-            update() {
-                this.y += this.speedY;
-                this.x += this.speedX;
-                this.rotation += this.rotationSpeed;
-
-                if (this.y > canvas.height) {
-                    this.reset();
-                    this.y = -10;
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.rotation * Math.PI / 180);
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                // 绘制桂花形状（圆形花瓣）
-                for (let i = 0; i < 4; i++) {
-                    ctx.beginPath();
-                    ctx.arc(0, -this.size/2, this.size/2, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.rotate(Math.PI / 2);
-                }
-                ctx.restore();
-            }
-        }
-
-        // 创建粒子
-        const particles = [];
-        const particleCount = 50;
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-
-        // 4. 数字计数动画
-        function animateCounter(element, target, duration = 2000) {
-            let start = 0;
-            const increment = target / (duration / 16);
-            
-            function updateCounter() {
-                start += increment;
-                if (start < target) {
-                    element.textContent = Math.floor(start);
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    element.textContent = target;
-                }
-            }
-            updateCounter();
-        }
-
-        // 观察数字元素
-        const numberObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-                    entry.target.classList.add('counted');
-                    const target = parseInt(entry.target.dataset.target);
-                    animateCounter(entry.target, target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        // 为数字元素添加观察
-        document.querySelectorAll('.strength-card .number').forEach(el => {
-            const text = el.textContent;
-            const num = parseInt(text);
-            if (!isNaN(num)) {
-                el.dataset.target = num;
-                el.textContent = '0';
-                numberObserver.observe(el);
-            }
-        });
-
-        // 5. 打字机效果
-        function typeWriter(element, text, speed = 100) {
-            let i = 0;
-            element.textContent = '';
-            function type() {
-                if (i < text.length) {
-                    element.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                }
-            }
-            type();
-        }
-
-        // 为首页标题添加打字机效果
-        const headerTitle = document.querySelector('header h1');
-        if (headerTitle) {
-            const originalText = headerTitle.textContent;
-            headerTitle.textContent = '';
-            setTimeout(() => {
-                typeWriter(headerTitle, originalText, 80);
-            }, 500);
-        }
-
-        // 6. 视差滚动效果
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('header');
-            if (parallax) {
-                parallax.style.backgroundPositionY = -(scrolled * 0.5) + 'px';
-            }
-        });
-
-        // 7. 3D卡片翻转效果
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'perspective(1000px) rotateY(5deg) translateY(-10px)';
-            });
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'perspective(1000px) rotateY(0deg) translateY(0)';
-            });
         });
     </script>
 </body>
