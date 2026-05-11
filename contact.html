@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 华彬力美科技（湖北）有限公司</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d0d0d;
+            --secondary: #1a1a1a;
+            --accent: #c9a962;
+            --accent-light: #e0c78a;
+            --accent-dark: #a88b4a;
+            --text-dark: #1a1a1a;
+            --text-light: #4a4a4a;
+            --text-muted: #8a8a8a;
+            --bg-light: #fafaf9;
+            --bg-white: #ffffff;
+            --border: #e8e8e8;
+            --border-gold: rgba(201, 169, 98, 0.3);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif; 
+            background: var(--bg-light); 
+            color: var(--text-dark); 
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Noto Serif SC', 'Songti SC', serif;
+            font-weight: 600;
+        }
+
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(13, 13, 13, 0.98);
+            padding: 20px 100px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            border-bottom: 1px solid rgba(201, 169, 98, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+        }
+
+        nav.scrolled {
+            padding: 15px 100px;
+            background: rgba(13, 13, 13, 0.96);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo { 
+            font-size: 24px; 
+            font-weight: 700; 
+            color: var(--bg-white);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Noto Serif SC', serif;
+        }
+        
+        .logo::before {
+            content: '';
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(201, 169, 98, 0.3);
+        }
+        
+        .nav-menu { display: flex; gap: 0; list-style: none; }
+        .nav-item { position: relative; }
+        .nav-item > a {
+            color: rgba(255, 255, 255, 0.9); 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 500;
+            padding: 24px 32px; 
+            display: block; 
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        
+        .nav-item > a::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+        }
+        
+        .nav-item > a:hover { 
+            color: var(--accent); 
+        }
+        
+        .nav-item > a:hover::after {
+            width: 40px;
+        }
+
+        .dropdown {
+            position: absolute; top: 100%; left: 0;
+            background: var(--bg-white); 
+            min-width: 240px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border-radius: 8px; 
+            padding: 8px 0;
+            opacity: 0; 
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.98);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+            border: 1px solid var(--border);
+        }
+        
+        .nav-item:hover .dropdown {
+            opacity: 1; 
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        
+        .dropdown::before {
+            content: ''; 
+            position: absolute; 
+            top: -8px; 
+            left: 40px;
+            border-left: 8px solid transparent; 
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid var(--bg-white);
+            filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.05));
+        }
+        
+        .dropdown a {
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            padding: 16px 28px; 
+            color: var(--text-dark); 
+            text-decoration: none;
+            font-size: 14px; 
+            transition: all 0.25s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .dropdown a:hover {
+            background: rgba(201, 169, 98, 0.06); 
+            color: var(--accent);
+            border-left-color: var(--accent);
+            padding-left: 32px;
+        }
+        
+        .dropdown a::after {
+            content: '→'; 
+            color: var(--accent); 
+            font-size: 14px; 
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.25s ease;
+        }
+        
+        .dropdown a:hover::after {
+            opacity: 0.8;
+            transform: translateX(0);
+        }
+
+        .menu-icon { display: none; color: var(--bg-white); font-size: 24px; cursor: pointer; }
+
+        .hero {
+            background: linear-gradient(145deg, #0d0d0d 0%, #1a1a1a 30%, #0d0d0d 60%, #1a1a1a 100%);
+            padding: 180px 100px 120px; 
+            text-align: center; 
+            color: white;
+            position: relative; 
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 15% 25%, rgba(201, 169, 98, 0.1) 0%, transparent 45%),
+                radial-gradient(ellipse at 85% 75%, rgba(201, 169, 98, 0.06) 0%, transparent 40%);
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--accent);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        .hero h1 { 
+            font-size: 48px; 
+            margin-bottom: 22px; 
+            color: var(--bg-white); 
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+        .hero p { 
+            font-size: 18px; 
+            opacity: 0.85; 
+            max-width: 700px; 
+            margin: 0 auto; 
+            font-weight: 300; 
+            letter-spacing: 0.5px;
+        }
+
+        .contact-container {
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 100px 100px;
+            display: grid; 
+            grid-template-columns: 1fr 1.2fr; 
+            gap: 50px;
+        }
+
+        .contact-info, .contact-form {
+            background: var(--bg-white); 
+            padding: 55px; 
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .contact-info h2, .contact-form h2 {
+            color: var(--text-dark); 
+            margin-bottom: 40px; 
+            font-size: 28px;
+            padding-bottom: 20px; 
+            position: relative;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-info h2::after, .contact-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+            border-radius: 2px;
+        }
+
+        .info-item { 
+            margin-bottom: 32px; 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 20px; 
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .info-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .info-icon { 
+            width: 52px; 
+            height: 52px; 
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.12) 0%, rgba(201, 169, 98, 0.04) 100%);
+            border-radius: 14px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid var(--border-gold);
+        }
+        
+        .info-icon svg { 
+            width: 24px; 
+            height: 24px; 
+            color: var(--accent);
+        }
+        
+        .info-content h4 { 
+            color: var(--text-dark); 
+            font-size: 16px; 
+            margin-bottom: 8px; 
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        
+        .info-content p, .info-content a { 
+            color: var(--text-light); 
+            font-size: 15px; 
+            text-decoration: none;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+        
+        .info-content a:hover { 
+            color: var(--accent);
+            transition: color 0.3s ease;
+        }
+
+        .form-group { margin-bottom: 24px; }
+        .form-group label { 
+            display: block; 
+            margin-bottom: 10px; 
+            color: var(--text-dark); 
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; 
+            padding: 16px 20px; 
+            border: 1px solid var(--border);
+            border-radius: 10px; 
+            font-size: 15px; 
+            background: var(--bg-light);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--accent); 
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(201, 169, 98, 0.1);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--bg-white); 
+            border: none; 
+            padding: 18px 40px;
+            border-radius: 10px; 
+            font-size: 16px; 
+            font-weight: 600;
+            cursor: pointer; 
+            width: 100%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
+            box-shadow: 0 6px 24px rgba(201, 169, 98, 0.35);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(201, 169, 98, 0.45);
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+        }
+
+        .map-section { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 0 100px 100px; 
+        }
+        
+        .map-container { 
+            background: var(--bg-white); 
+            padding: 50px; 
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+        
+        .map-container h3 { 
+            color: var(--text-dark); 
+            margin-bottom: 30px; 
+            font-size: 22px; 
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        
+        .map-box {
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.06) 0%, rgba(201, 169, 98, 0.02) 100%);
+            border-radius: 12px; 
+            padding: 40px; 
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .map-box svg { 
+            width: 100%; 
+            max-width: 500px; 
+            height: auto; 
+        }
+        
+        .map-address { 
+            margin-top: 25px; 
+            color: var(--text-light); 
+            font-size: 15px; 
+            font-weight: 400;
+        }
+        
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 20px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--bg-white); 
+            padding: 14px 35px;
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.3px;
+            gap: 10px;
+        }
+        
+        .map-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 169, 98, 0.35);
+        }
+
+        footer {
+            background: var(--primary); 
+            padding: 80px 100px; 
+            color: rgba(255, 255, 255, 0.85); 
+            text-align: center;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.3), transparent);
+        }
+
+        footer .footer-logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--bg-white);
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        footer .tagline {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+        }
+
+        footer .contact-info { 
+            margin-top: 20px; 
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        footer a { 
+            color: var(--accent); 
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover { 
+            color: var(--accent-light);
+        }
+
+        footer .divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 35px auto;
+        }
+
+        footer .copyright {
+            font-size: 13px;
+            opacity: 0.5;
+            letter-spacing: 0.3px;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 25px; }
+            nav.scrolled { padding: 12px 25px; }
+            
+            .logo { font-size: 20px; }
+            .logo::before { width: 30px; height: 30px; }
+            
+            .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                width: 100%; 
+                background: rgba(13, 13, 13, 0.98); 
+                padding: 15px 0; 
+                gap: 0;
+            }
+            
+            .nav-menu.active { display: flex; }
+            .nav-item > a { 
+                padding: 16px 25px; 
+                font-size: 14px;
+            }
+            
+            .nav-item > a::after { display: none; }
+            
+            .dropdown { 
+                position: static; 
+                box-shadow: none; 
+                border: none; 
+                background: rgba(255, 255, 255, 0.03);
+                opacity: 1; 
+                visibility: visible; 
+                transform: none; 
+                padding-left: 20px;
+                min-width: 100%;
+            }
+            
+            .dropdown::before { display: none; }
+            
+            .dropdown a { padding: 12px 25px; }
+            
+            .menu-icon { display: block; }
+
+            .hero { padding: 140px 25px 100px; }
+            .hero-subtitle { font-size: 12px; letter-spacing: 2px; }
+            .hero h1 { font-size: 34px; }
+            .hero p { font-size: 16px; }
+
+            .contact-container { 
+                grid-template-columns: 1fr; 
+                padding: 70px 25px; 
+                gap: 35px;
+            }
+            
+            .contact-info, .contact-form { padding: 35px; }
+            .contact-info h2, .contact-form h2 { font-size: 24px; margin-bottom: 30px; }
+            .info-item { padding-bottom: 25px; margin-bottom: 25px; }
+
+            .map-section { padding: 0 25px 70px; }
+            .map-container { padding: 35px 25px; }
+            .map-box { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav id="main-nav">
+        <div class="logo">华彬力美科技</div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="index.html">首页</a>
+            </li>
+            <li class="nav-item">
+                <a href="about.html">关于我们</a>
+                <div class="dropdown">
+                    <a href="about.html#overview">企业概况</a>
+                    <a href="about.html#strength">企业实力</a>
+                    <a href="about.html#tech">技术优势</a>
+                    <a href="about.html#material">原料保障</a>
+                    <a href="about.html#achievements">项目成果</a>
+                    <a href="about.html#vision">未来展望</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">产品中心</a>
+                <div class="dropdown">
+                    <a href="products.html#oil">桂花精油</a>
+                    <a href="products.html#cell">桂花细胞液</a>
+                    <a href="products.html#skincare">护肤品原料</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="hr.html">人力资源</a>
+                <div class="dropdown">
+                    <a href="hr.html#talent">人才理念</a>
+                    <a href="hr.html#social">社会招聘</a>
+                    <a href="hr.html#campus">校园招聘</a>
+                    <a href="hr.html#train">培训发展</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html">联系我们</a>
+            </li>
+        </ul>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">联系我们</div>
+            <h1>与我们取得联系</h1>
+            <p>您可以通过以下方式与我们联系，我们将竭诚为您服务</p>
+        </div>
+    </div>
+
+    <div class="contact-container">
+        <div class="contact-info">
+            <h2>联系信息</h2>
+            <div class="info-item">
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <div class="info-content">
+                    <h4>企业地址</h4>
+                    <p>咸宁国家高新技术产业开发区贺胜路88号</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+                <div class="info-content">
+                    <h4>联系人</h4>
+                    <p>许欣叶</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 5a2 2 0 0 1 2-2h3.28a1 1 0 0 1 .948.684l1.498 4.493a1 1 0 0 1-.502 1.21l-2.257 1.13a11.042 11.042 0 0 0 5.516 5.516l1.13-2.257a1 1 0 0 1 1.21-.502l4.493 1.498a1 1 0 0 1 .684.949V19a2 2 0 0 1-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                </div>
+                <div class="info-content">
+                    <h4>联系电话</h4>
+                    <a href="tel:17371473236">17371473236</a>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </div>
+                <div class="info-content">
+                    <h4>电子邮箱</h4>
+                    <a href="mailto:1913672532@qq.com">1913672532@qq.com</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>给我们留言</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label>姓名 *</label>
+                    <input type="text" required placeholder="您怎么称呼">
+                </div>
+                <div class="form-group">
+                    <label>联系方式 *</label>
+                    <input type="text" required placeholder="请输入您的联系方式">
+                </div>
+                <div class="form-group">
+                    <label>电话号码</label>
+                    <input type="tel" placeholder="您的联系电话">
+                </div>
+                <div class="form-group">
+                    <label>业务类型 *</label>
+                    <select required>
+                        <option value="">请选择业务类型</option>
+                        <option value="采购">产品采购</option>
+                        <option value="合作">商务合作</option>
+                        <option value="咨询">技术咨询</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>留言内容</label>
+                    <textarea rows="5" placeholder="请输入您的留言内容"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">提交留言</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="map-section">
+        <div class="map-container">
+            <h3>公司位置</h3>
+            <div class="map-box">
+                <iframe 
+                    src="https://map.baidu.com/search/咸宁国家高新技术产业开发区贺胜路88号/@12941639.192778,3313633.491353,17z" 
+                    width="100%" 
+                    height="400" 
+                    frameborder="0" 
+                    style="border-radius: 12px;"
+                    allowfullscreen>
+                </iframe>
+                <div class="map-address">📍 咸宁国家高新技术产业开发区贺胜路88号</div>
+                <a href="https://map.baidu.com/search/咸宁国家高新技术产业开发区贺胜路88号" target="_blank" class="map-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    在百度地图中查看
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">华彬力美科技</div>
+        <div class="tagline">专注桂花深加工 | 源自咸宁金桂</div>
+        <div class="contact-info">
+            <a href="tel:17371473236">📞 17371473236</a>
+            <a href="mailto:1913672532@qq.com">✉️ 1913672532@qq.com</a>
+        </div>
+        <div class="divider"></div>
+        <div class="copyright">© 2024 华彬力美科技（湖北）有限公司 版权所有</div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-menu');
+            nav.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(e) {
+            const nav = document.querySelector('.nav-menu');
+            if (!e.target.closest('nav') && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
+        });
+
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('留言提交成功！我们会尽快与您联系。');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人力资源 - 华彬力美科技（湖北）有限公司</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d0d0d;
+            --secondary: #1a1a1a;
+            --accent: #c9a962;
+            --accent-light: #e0c78a;
+            --accent-dark: #a88b4a;
+            --text-dark: #1a1a1a;
+            --text-light: #4a4a4a;
+            --text-muted: #8a8a8a;
+            --bg-light: #fafaf9;
+            --bg-white: #ffffff;
+            --border: #e8e8e8;
+            --border-gold: rgba(201, 169, 98, 0.3);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif; 
+            background: var(--bg-light); 
+            color: var(--text-dark); 
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Noto Serif SC', 'Songti SC', serif;
+            font-weight: 600;
+        }
+
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(13, 13, 13, 0.98);
+            padding: 20px 100px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            border-bottom: 1px solid rgba(201, 169, 98, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+        }
+
+        nav.scrolled {
+            padding: 15px 100px;
+            background: rgba(13, 13, 13, 0.96);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo { 
+            font-size: 24px; 
+            font-weight: 700; 
+            color: var(--bg-white);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Noto Serif SC', serif;
+        }
+        
+        .logo::before {
+            content: '';
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(201, 169, 98, 0.3);
+        }
+        
+        .nav-menu { display: flex; gap: 0; list-style: none; }
+        .nav-item { position: relative; }
+        .nav-item > a {
+            color: rgba(255, 255, 255, 0.9); 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 500;
+            padding: 24px 32px; 
+            display: block; 
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        
+        .nav-item > a::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+        }
+        
+        .nav-item > a:hover { 
+            color: var(--accent); 
+        }
+        
+        .nav-item > a:hover::after {
+            width: 40px;
+        }
+
+        .dropdown {
+            position: absolute; top: 100%; left: 0;
+            background: var(--bg-white); 
+            min-width: 240px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border-radius: 8px; 
+            padding: 8px 0;
+            opacity: 0; 
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.98);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+            border: 1px solid var(--border);
+        }
+        
+        .nav-item:hover .dropdown {
+            opacity: 1; 
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        
+        .dropdown::before {
+            content: ''; 
+            position: absolute; 
+            top: -8px; 
+            left: 40px;
+            border-left: 8px solid transparent; 
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid var(--bg-white);
+            filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.05));
+        }
+        
+        .dropdown a {
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            padding: 16px 28px; 
+            color: var(--text-dark); 
+            text-decoration: none;
+            font-size: 14px; 
+            transition: all 0.25s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .dropdown a:hover {
+            background: rgba(201, 169, 98, 0.06); 
+            color: var(--accent);
+            border-left-color: var(--accent);
+            padding-left: 32px;
+        }
+        
+        .dropdown a::after {
+            content: '→'; 
+            color: var(--accent); 
+            font-size: 14px; 
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.25s ease;
+        }
+        
+        .dropdown a:hover::after {
+            opacity: 0.8;
+            transform: translateX(0);
+        }
+
+        .menu-icon { display: none; color: var(--bg-white); font-size: 24px; cursor: pointer; }
+
+        .hero {
+            background: linear-gradient(145deg, #0d0d0d 0%, #1a1a1a 30%, #0d0d0d 60%, #1a1a1a 100%);
+            padding: 180px 100px 120px; 
+            text-align: center; 
+            color: white;
+            position: relative; 
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 15% 25%, rgba(201, 169, 98, 0.1) 0%, transparent 45%),
+                radial-gradient(ellipse at 85% 75%, rgba(201, 169, 98, 0.06) 0%, transparent 40%);
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--accent);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        .hero h1 { 
+            font-size: 48px; 
+            margin-bottom: 22px; 
+            color: var(--bg-white); 
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+        .hero p { 
+            font-size: 18px; 
+            opacity: 0.85; 
+            max-width: 700px; 
+            margin: 0 auto; 
+            font-weight: 300; 
+            letter-spacing: 0.5px;
+        }
+
+        .section {
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 100px 100px;
+        }
+
+        .section-title {
+            font-size: 32px; 
+            color: var(--text-dark); 
+            margin-bottom: 60px; 
+            text-align: center;
+            position: relative;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+            border-radius: 2px;
+        }
+
+        #talent {
+            background: var(--bg-white);
+        }
+
+        .talent-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+        }
+
+        .talent-card {
+            background: var(--bg-light);
+            padding: 45px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .talent-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-gold);
+        }
+
+        .talent-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.15) 0%, rgba(201, 169, 98, 0.05) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            border: 2px solid var(--border-gold);
+        }
+
+        .talent-icon svg {
+            width: 36px;
+            height: 36px;
+            color: var(--accent);
+        }
+
+        .talent-card h3 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .talent-card p {
+            color: var(--text-light);
+            font-size: 15px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        #social, #campus {
+            background: var(--bg-light);
+        }
+
+        .job-list {
+            background: var(--bg-white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+        }
+
+        .job-item {
+            padding: 32px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .job-item:last-child {
+            border-bottom: none;
+        }
+
+        .job-item:hover {
+            background: rgba(201, 169, 98, 0.03);
+        }
+
+        .job-info h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .job-info p {
+            color: var(--text-light);
+            font-size: 14px;
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+        }
+
+        .job-info p span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .job-info p span::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .apply-btn {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--bg-white);
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(201, 169, 98, 0.3);
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(201, 169, 98, 0.4);
+            background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+        }
+
+        .empty-jobs {
+            text-align: center;
+            padding: 60px;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        #train {
+            background: var(--bg-white);
+        }
+
+        .train-intro {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
+
+        .train-intro p {
+            color: var(--text-light);
+            font-size: 17px;
+            line-height: 2;
+            font-weight: 400;
+        }
+
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .training-card {
+            background: var(--bg-light);
+            padding: 35px 28px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+
+        .training-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-gold);
+        }
+
+        .training-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.15) 0%, rgba(201, 169, 98, 0.05) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border: 1px solid var(--border-gold);
+        }
+
+        .training-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--accent);
+        }
+
+        .training-card h4 {
+            font-size: 17px;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .training-card p {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .career-path {
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.06) 0%, rgba(201, 169, 98, 0.02) 100%);
+            border-radius: 16px;
+            padding: 45px;
+            border: 1px solid var(--border-gold);
+        }
+
+        .career-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 35px;
+        }
+
+        .career-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(201, 169, 98, 0.3);
+        }
+
+        .career-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--bg-white);
+        }
+
+        .career-header h3 {
+            font-size: 22px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .career-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .career-item {
+            background: var(--bg-white);
+            padding: 24px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .career-item:hover {
+            border-color: var(--border-gold);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .career-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.12) 0%, rgba(201, 169, 98, 0.04) 100%);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            width: fit-content;
+        }
+
+        .career-item span {
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        footer {
+            background: var(--primary); 
+            padding: 80px 100px; 
+            color: rgba(255, 255, 255, 0.85); 
+            text-align: center;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.3), transparent);
+        }
+
+        footer .footer-logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--bg-white);
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        footer .tagline {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+        }
+
+        footer .contact-info { 
+            margin-top: 20px; 
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        footer a { 
+            color: var(--accent); 
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover { 
+            color: var(--accent-light);
+        }
+
+        footer .divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 35px auto;
+        }
+
+        footer .copyright {
+            font-size: 13px;
+            opacity: 0.5;
+            letter-spacing: 0.3px;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 25px; }
+            nav.scrolled { padding: 12px 25px; }
+            
+            .logo { font-size: 20px; }
+            .logo::before { width: 30px; height: 30px; }
+            
+            .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                width: 100%; 
+                background: rgba(13, 13, 13, 0.98); 
+                padding: 15px 0; 
+                gap: 0;
+            }
+            
+            .nav-menu.active { display: flex; }
+            .nav-item > a { 
+                padding: 16px 25px; 
+                font-size: 14px;
+            }
+            
+            .nav-item > a::after { display: none; }
+            
+            .dropdown { 
+                position: static; 
+                box-shadow: none; 
+                border: none; 
+                background: rgba(255, 255, 255, 0.03);
+                opacity: 1; 
+                visibility: visible; 
+                transform: none; 
+                padding-left: 20px;
+                min-width: 100%;
+            }
+            
+            .dropdown::before { display: none; }
+            
+            .dropdown a { padding: 12px 25px; }
+            
+            .menu-icon { display: block; }
+
+            .hero { padding: 140px 25px 100px; }
+            .hero-subtitle { font-size: 12px; letter-spacing: 2px; }
+            .hero h1 { font-size: 34px; }
+            .hero p { font-size: 16px; }
+
+            .section { padding: 70px 25px; }
+            .section-title { font-size: 28px; margin-bottom: 45px; }
+
+            .talent-grid { grid-template-columns: 1fr; gap: 25px; }
+            .talent-card { padding: 35px; }
+
+            .job-item { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .job-info p { flex-wrap: wrap; gap: 12px; }
+
+            .training-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .training-card { padding: 25px 20px; }
+            .training-icon { width: 56px; height: 56px; }
+            .training-icon svg { width: 24px; height: 24px; }
+            
+            .career-path { padding: 30px 25px; }
+            .career-header { flex-direction: column; text-align: center; }
+            .career-content { grid-template-columns: 1fr; gap: 20px; }
+            .career-item { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav id="main-nav">
+        <div class="logo">华彬力美科技</div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="index.html">首页</a>
+            </li>
+            <li class="nav-item">
+                <a href="about.html">关于我们</a>
+                <div class="dropdown">
+                    <a href="about.html#overview">企业概况</a>
+                    <a href="about.html#strength">企业实力</a>
+                    <a href="about.html#tech">技术优势</a>
+                    <a href="about.html#material">原料保障</a>
+                    <a href="about.html#achievements">项目成果</a>
+                    <a href="about.html#vision">未来展望</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">产品中心</a>
+                <div class="dropdown">
+                    <a href="products.html#oil">桂花精油</a>
+                    <a href="products.html#cell">桂花细胞液</a>
+                    <a href="products.html#skincare">护肤品原料</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="hr.html">人力资源</a>
+                <div class="dropdown">
+                    <a href="#talent">人才理念</a>
+                    <a href="#social">社会招聘</a>
+                    <a href="#campus">校园招聘</a>
+                    <a href="#train">培训发展</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html">联系我们</a>
+            </li>
+        </ul>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">人力资源</div>
+            <h1>人才是企业发展的核心动力</h1>
+            <p>我们致力于打造一个充满活力、创新和成长机会的工作环境</p>
+        </div>
+    </div>
+
+    <section id="talent" class="section">
+        <h2 class="section-title">人才理念</h2>
+        <div class="talent-grid">
+            <div class="talent-card">
+                <div class="talent-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </div>
+                <h3>以人为本</h3>
+                <p>尊重每一位员工的价值，关注员工的成长与发展，打造人性化的工作环境</p>
+            </div>
+            <div class="talent-card">
+                <div class="talent-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <h3>追求卓越</h3>
+                <p>鼓励创新思维，追求卓越品质，以高标准要求每一项工作</p>
+            </div>
+            <div class="talent-card">
+                <div class="talent-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <h3>团队协作</h3>
+                <p>倡导开放沟通，强化团队协作，凝聚集体智慧共创美好未来</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="social" class="section">
+        <h2 class="section-title">社会招聘</h2>
+        <div class="job-list">
+            <div class="job-item">
+                <div class="job-info">
+                    <h3>研发工程师</h3>
+                    <p>
+                        <span>工作地点：咸宁</span>
+                        <span>学历要求：本科及以上</span>
+                        <span>经验要求：3-5年</span>
+                    </p>
+                </div>
+                <a href="contact.html" class="apply-btn">立即申请</a>
+            </div>
+            <div class="job-item">
+                <div class="job-info">
+                    <h3>生产主管</h3>
+                    <p>
+                        <span>工作地点：咸宁</span>
+                        <span>学历要求：本科及以上</span>
+                        <span>经验要求：5-8年</span>
+                    </p>
+                </div>
+                <a href="contact.html" class="apply-btn">立即申请</a>
+            </div>
+            <div class="job-item">
+                <div class="job-info">
+                    <h3>销售经理</h3>
+                    <p>
+                        <span>工作地点：咸宁</span>
+                        <span>学历要求：本科及以上</span>
+                        <span>经验要求：3-5年</span>
+                    </p>
+                </div>
+                <a href="contact.html" class="apply-btn">立即申请</a>
+            </div>
+            <div class="job-item">
+                <div class="job-info">
+                    <h3>质量控制专员</h3>
+                    <p>
+                        <span>工作地点：咸宁</span>
+                        <span>学历要求：本科及以上</span>
+                        <span>经验要求：2-3年</span>
+                    </p>
+                </div>
+                <a href="contact.html" class="apply-btn">立即申请</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="campus" class="section">
+        <h2 class="section-title">校园招聘</h2>
+        <div class="job-list">
+            <div class="job-item">
+                <div class="job-info">
+                    <h3>研发管培生</h3>
+                    <p>
+                        <span>工作地点：咸宁</span>
+                        <span>学历要求：硕士及以上</span>
+                        <span>专业：化学、生物相关</span>
+                    </p>
+                </div>
+                <a href="contact.html" class="apply-btn">立即申请</a>
+            </div>
+            <div class="job-item">
+                <div class="job-info">
+                    <h3>生产储备干部</h3>
+                    <p>
+                        <span>工作地点：咸宁</span>
+                        <span>学历要求：本科及以上</span>
+                        <span>专业：化工、制药相关</span>
+                    </p>
+                </div>
+                <a href="contact.html" class="apply-btn">立即申请</a>
+            </div>
+            <div class="job-item">
+                <div class="job-info">
+                    <h3>市场管培生</h3>
+                    <p>
+                        <span>工作地点：咸宁</span>
+                        <span>学历要求：本科及以上</span>
+                        <span>专业：市场营销、商务相关</span>
+                    </p>
+                </div>
+                <a href="contact.html" class="apply-btn">立即申请</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="train" class="section">
+        <h2 class="section-title">培训发展</h2>
+        <div class="train-intro">
+            <p>我们为员工提供完善的培训体系和广阔的发展空间，助力每位员工实现职业目标。</p>
+        </div>
+        
+        <div class="training-grid">
+            <div class="training-card">
+                <div class="training-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <h4>入职培训</h4>
+                <p>帮助新员工快速了解企业文化、业务流程和工作环境</p>
+            </div>
+            
+            <div class="training-card">
+                <div class="training-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                    </svg>
+                </div>
+                <h4>技能培训</h4>
+                <p>针对不同岗位提供专业技能提升课程</p>
+            </div>
+            
+            <div class="training-card">
+                <div class="training-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                    </svg>
+                </div>
+                <h4>管理培训</h4>
+                <p>为有潜力的员工提供管理能力发展机会</p>
+            </div>
+            
+            <div class="training-card">
+                <div class="training-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 010 7.75"/>
+                    </svg>
+                </div>
+                <h4>外部培训</h4>
+                <p>支持员工参加行业研讨会、专业认证等外部学习活动</p>
+            </div>
+        </div>
+        
+        <div class="career-path">
+            <div class="career-header">
+                <div class="career-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                    </svg>
+                </div>
+                <h3>职业发展路径</h3>
+            </div>
+            <div class="career-content">
+                <div class="career-item">
+                    <div class="career-badge">技术</div>
+                    <span>专业技术路线：初级 → 中级 → 高级 → 专家</span>
+                </div>
+                <div class="career-item">
+                    <div class="career-badge">管理</div>
+                    <span>管理路线：主管 → 经理 → 高级经理 → 总监</span>
+                </div>
+                <div class="career-item">
+                    <div class="career-badge">综合</div>
+                    <span>跨部门轮岗：提供多元化职业体验</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">华彬力美科技</div>
+        <div class="tagline">专注桂花深加工 | 源自咸宁金桂</div>
+        <div class="contact-info">
+            <a href="tel:17371473236">📞 17371473236</a>
+            <a href="mailto:1913672532@qq.com">✉️ 1913672532@qq.com</a>
+        </div>
+        <div class="divider"></div>
+        <div class="copyright">© 2024 华彬力美科技（湖北）有限公司 版权所有</div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-menu');
+            nav.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(e) {
+            const nav = document.querySelector('.nav-menu');
+            if (!e.target.closest('nav') && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
+        });
+
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

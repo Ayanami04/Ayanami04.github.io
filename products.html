@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品中心 - 华彬力美科技（湖北）有限公司</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d0d0d;
+            --secondary: #1a1a1a;
+            --accent: #c9a962;
+            --accent-light: #e0c78a;
+            --accent-dark: #a88b4a;
+            --text-dark: #1a1a1a;
+            --text-light: #4a4a4a;
+            --text-muted: #8a8a8a;
+            --bg-light: #fafaf9;
+            --bg-white: #ffffff;
+            --border: #e8e8e8;
+            --border-gold: rgba(201, 169, 98, 0.3);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif; 
+            background: var(--bg-light); 
+            color: var(--text-dark); 
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Noto Serif SC', 'Songti SC', serif;
+            font-weight: 600;
+        }
+
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(13, 13, 13, 0.98);
+            padding: 20px 100px;
+            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            border-bottom: 1px solid rgba(201, 169, 98, 0.15);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+        }
+
+        nav.scrolled {
+            padding: 15px 100px;
+            background: rgba(13, 13, 13, 0.96);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo { 
+            font-size: 24px; 
+            font-weight: 700; 
+            color: var(--bg-white);
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Noto Serif SC', serif;
+        }
+        
+        .logo::before {
+            content: '';
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(201, 169, 98, 0.3);
+        }
+        
+        .nav-menu { display: flex; gap: 0; list-style: none; }
+        .nav-item { position: relative; }
+        .nav-item > a {
+            color: rgba(255, 255, 255, 0.9); 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 500;
+            padding: 24px 32px; 
+            display: block; 
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+        
+        .nav-item > a::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+        }
+        
+        .nav-item > a:hover { 
+            color: var(--accent); 
+        }
+        
+        .nav-item > a:hover::after {
+            width: 40px;
+        }
+
+        .dropdown {
+            position: absolute; top: 100%; left: 0;
+            background: var(--bg-white); 
+            min-width: 240px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border-radius: 8px; 
+            padding: 8px 0;
+            opacity: 0; 
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.98);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+            border: 1px solid var(--border);
+        }
+        
+        .nav-item:hover .dropdown {
+            opacity: 1; 
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        
+        .dropdown::before {
+            content: ''; 
+            position: absolute; 
+            top: -8px; 
+            left: 40px;
+            border-left: 8px solid transparent; 
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid var(--bg-white);
+            filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.05));
+        }
+        
+        .dropdown a {
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between;
+            padding: 16px 28px; 
+            color: var(--text-dark); 
+            text-decoration: none;
+            font-size: 14px; 
+            transition: all 0.25s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .dropdown a:hover {
+            background: rgba(201, 169, 98, 0.06); 
+            color: var(--accent);
+            border-left-color: var(--accent);
+            padding-left: 32px;
+        }
+        
+        .dropdown a::after {
+            content: '→'; 
+            color: var(--accent); 
+            font-size: 14px; 
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.25s ease;
+        }
+        
+        .dropdown a:hover::after {
+            opacity: 0.8;
+            transform: translateX(0);
+        }
+
+        .menu-icon { display: none; color: var(--bg-white); font-size: 24px; cursor: pointer; }
+
+        .hero {
+            background: linear-gradient(145deg, #0d0d0d 0%, #1a1a1a 30%, #0d0d0d 60%, #1a1a1a 100%);
+            padding: 180px 100px 120px; 
+            text-align: center; 
+            color: white;
+            position: relative; 
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 15% 25%, rgba(201, 169, 98, 0.1) 0%, transparent 45%),
+                radial-gradient(ellipse at 85% 75%, rgba(201, 169, 98, 0.06) 0%, transparent 40%);
+        }
+
+        .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+        .hero-subtitle {
+            font-size: 14px;
+            color: var(--accent);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+        .hero h1 { 
+            font-size: 48px; 
+            margin-bottom: 22px; 
+            color: var(--bg-white); 
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+        .hero p { 
+            font-size: 18px; 
+            opacity: 0.85; 
+            max-width: 700px; 
+            margin: 0 auto; 
+            font-weight: 300; 
+            letter-spacing: 0.5px;
+        }
+
+        .section { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 100px 100px;
+        }
+
+        .section-title {
+            text-align: center; 
+            color: var(--text-dark); 
+            font-size: 36px;
+            margin-bottom: 80px; 
+            padding-bottom: 25px;
+            position: relative;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-dark), var(--accent), var(--accent-dark));
+            border-radius: 2px;
+        }
+
+        .product-card {
+            background: var(--bg-white); 
+            border-radius: 16px; 
+            overflow: hidden;
+            box-shadow: var(--shadow-sm); 
+            margin-bottom: 60px;
+            display: grid; 
+            grid-template-columns: 1fr 1.4fr;
+            gap: 0;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: var(--border-gold);
+        }
+
+        .product-card.reverse { grid-template-columns: 1.4fr 1fr; }
+
+        .product-image {
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.08) 0%, rgba(201, 169, 98, 0.02) 100%);
+            padding: 60px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-dark), var(--accent), var(--accent-dark));
+        }
+
+        .product-content { 
+            padding: 55px; 
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-content h2 {
+            color: var(--text-dark); 
+            font-size: 32px; 
+            margin-bottom: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .product-content .subtitle { 
+            color: var(--accent); 
+            font-size: 14px; 
+            margin-bottom: 35px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .tab-container { margin-bottom: 30px; flex: 1; }
+        .tab-buttons { display: flex; gap: 12px; margin-bottom: 28px; }
+        .tab-btn {
+            background: var(--bg-light); 
+            color: var(--text-dark); 
+            border: 1px solid var(--border);
+            padding: 14px 32px; 
+            border-radius: 6px; 
+            cursor: pointer;
+            font-size: 14px; 
+            font-weight: 500;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.3px;
+        }
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+            color: var(--bg-white);
+            border-color: transparent;
+            box-shadow: 0 4px 18px rgba(201, 169, 98, 0.35);
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .tab-content h3 { 
+            color: var(--text-dark); 
+            margin-bottom: 18px; 
+            font-size: 20px; 
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .tab-content p { 
+            color: var(--text-light); 
+            font-size: 15px; 
+            line-height: 1.9; 
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        .tab-content ul { list-style: none; padding-left: 0; }
+        .tab-content li {
+            padding-left: 30px; 
+            margin-bottom: 15px; 
+            position: relative; 
+            color: var(--text-light);
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+        .tab-content li::before {
+            content: ''; 
+            position: absolute; 
+            left: 0; 
+            top: 6px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(201, 169, 98, 0.1);
+        }
+
+        .product-highlight {
+            background: linear-gradient(135deg, rgba(201, 169, 98, 0.08) 0%, rgba(201, 169, 98, 0.03) 100%);
+            padding: 25px; 
+            border-radius: 10px; 
+            margin-top: auto;
+            border-left: 3px solid var(--accent);
+        }
+
+        .product-highlight strong { 
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .product-highlight span {
+            color: var(--text-light);
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        footer {
+            background: var(--primary); 
+            padding: 80px 100px; 
+            color: rgba(255, 255, 255, 0.85); 
+            text-align: center;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 98, 0.3), transparent);
+        }
+
+        footer .footer-logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--bg-white);
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        footer .tagline {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: 35px;
+            letter-spacing: 0.5px;
+        }
+
+        footer .contact-info { 
+            margin-top: 20px; 
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        footer a { 
+            color: var(--accent); 
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover { 
+            color: var(--accent-light);
+        }
+
+        footer .divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            margin: 35px auto;
+        }
+
+        footer .copyright {
+            font-size: 13px;
+            opacity: 0.5;
+            letter-spacing: 0.3px;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 25px; }
+            nav.scrolled { padding: 12px 25px; }
+            
+            .logo { font-size: 20px; }
+            .logo::before { width: 30px; height: 30px; }
+            
+            .nav-menu { 
+                display: none; 
+                flex-direction: column; 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                width: 100%; 
+                background: rgba(13, 13, 13, 0.98); 
+                padding: 15px 0; 
+                gap: 0;
+            }
+            
+            .nav-menu.active { display: flex; }
+            .nav-item > a { 
+                padding: 16px 25px; 
+                font-size: 14px;
+            }
+            
+            .nav-item > a::after { display: none; }
+            
+            .dropdown { 
+                position: static; 
+                box-shadow: none; 
+                border: none; 
+                background: rgba(255, 255, 255, 0.03);
+                opacity: 1; 
+                visibility: visible; 
+                transform: none; 
+                padding-left: 20px;
+                min-width: 100%;
+            }
+            
+            .dropdown::before { display: none; }
+            
+            .dropdown a { padding: 12px 25px; }
+            
+            .menu-icon { display: block; }
+
+            .hero { padding: 140px 25px 100px; }
+            .hero-subtitle { font-size: 12px; letter-spacing: 2px; }
+            .hero h1 { font-size: 34px; }
+            .hero p { font-size: 16px; }
+
+            .section { padding: 70px 25px; }
+            .section-title { font-size: 28px; margin-bottom: 50px; }
+            .product-card, .product-card.reverse { grid-template-columns: 1fr; }
+            .product-content { padding: 35px; }
+            .product-content h2 { font-size: 26px; }
+            .tab-buttons { flex-wrap: wrap; }
+            .tab-btn { padding: 12px 22px; font-size: 13px; }
+            .product-image { padding: 40px 25px; }
+        }
+    </style>
+</head>
+<body>
+    <nav id="main-nav">
+        <div class="logo">华彬力美科技</div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="index.html">首页</a>
+            </li>
+            <li class="nav-item">
+                <a href="about.html">关于我们</a>
+                <div class="dropdown">
+                    <a href="about.html#overview">企业概况</a>
+                    <a href="about.html#strength">企业实力</a>
+                    <a href="about.html#tech">技术优势</a>
+                    <a href="about.html#material">原料保障</a>
+                    <a href="about.html#achievements">项目成果</a>
+                    <a href="about.html#vision">未来展望</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="products.html">产品中心</a>
+                <div class="dropdown">
+                    <a href="products.html#oil">桂花精油</a>
+                    <a href="products.html#cell">桂花细胞液</a>
+                    <a href="products.html#skincare">护肤品原料</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="hr.html">人力资源</a>
+                <div class="dropdown">
+                    <a href="hr.html#talent">人才理念</a>
+                    <a href="hr.html#social">社会招聘</a>
+                    <a href="hr.html#campus">校园招聘</a>
+                    <a href="hr.html#train">培训发展</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html">联系我们</a>
+            </li>
+        </ul>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-subtitle">产品中心</div>
+            <h1>桂花深加工系列产品</h1>
+            <p>专注桂花深加工，提供高品质桂花精油、桂花细胞液及护肤品原料</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="product-card" id="oil">
+            <div class="product-image">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="oilGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#c9a962"/>
+                            <stop offset="100%" style="stop-color:#a88b4a"/>
+                        </linearGradient>
+                        <linearGradient id="oilGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(201,169,98,0.85)"/>
+                            <stop offset="100%" style="stop-color:rgba(168,139,74,0.92)"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="85" fill="rgba(201,169,98,0.06)"/>
+                    <ellipse cx="100" cy="110" rx="32" ry="48" fill="url(#oilGrad2)"/>
+                    <ellipse cx="100" cy="110" rx="26" ry="40" fill="url(#oilGrad2)" opacity="0.9"/>
+                    <rect x="72" y="58" width="56" height="12" rx="2" fill="#7a5a3a"/>
+                    <rect x="78" y="53" width="44" height="7" rx="1" fill="#5a3f28"/>
+                    <ellipse cx="100" cy="58" rx="14" ry="4" fill="#7a5a3a"/>
+                    <ellipse cx="92" cy="88" rx="5" ry="7" fill="white" opacity="0.3"/>
+                    <ellipse cx="105" cy="102" rx="3" ry="4" fill="white" opacity="0.25"/>
+                    <ellipse cx="96" cy="122" rx="4" ry="5" fill="white" opacity="0.2"/>
+                    <circle cx="100" cy="42" r="8" fill="url(#oilGrad1)"/>
+                    <path d="M100,35 Q104,39 104,44 Q100,42 96,44 Q96,39 100,35" fill="#7a5a3a"/>
+                    <ellipse cx="94" cy="38" rx="2" ry="4" fill="url(#oilGrad1)" transform="rotate(-25,94,38)"/>
+                    <ellipse cx="106" cy="38" rx="2" ry="4" fill="url(#oilGrad1)" transform="rotate(25,106,38)"/>
+                </svg>
+            </div>
+            <div class="product-content">
+                <h2>桂花精油</h2>
+                <p class="subtitle">Osmanthus Essential Oil</p>
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" onclick="showTab('oil-tech')">核心工艺</button>
+                        <button class="tab-btn" onclick="showTab('oil-app')">应用场景</button>
+                        <button class="tab-btn" onclick="showTab('oil-adv')">核心优势</button>
+                    </div>
+                    <div id="oil-tech" class="tab-content active">
+                        <h3>超临界CO2萃取技术</h3>
+                        <p>采用咸宁鲜桂花，通过超临界二氧化碳流体技术低温萃取，无添加、纯度高，可完美还原桂花自然香气，保留桂花本真风味。</p>
+                        <ul>
+                            <li>低温萃取，保护香气成分不流失</li>
+                            <li>无化学溶剂残留，纯天然</li>
+                            <li>萃取效率高，环保可持续</li>
+                        </ul>
+                    </div>
+                    <div id="oil-app" class="tab-content">
+                        <h3>多领域应用</h3>
+                        <p>广泛应用于美妆、香薰、食品等多个领域，满足B端厂商与C端高端消费群体的需求。</p>
+                        <ul>
+                            <li>美妆厂商用于护肤品调配</li>
+                            <li>香薰商家用于香薰制作</li>
+                            <li>食品厂商用于食品调味</li>
+                            <li>C端高端消费用于香薰、个人护理</li>
+                        </ul>
+                    </div>
+                    <div id="oil-adv" class="tab-content">
+                        <h3>产品优势</h3>
+                        <ul>
+                            <li>原料源自咸宁优质桂花基地，源头可控</li>
+                            <li>国际前沿萃取技术，品质达到国际标准</li>
+                            <li>无任何添加剂，天然安全</li>
+                            <li>获得亚太地区香料协会及国际巨头芬美意认可</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-highlight">
+                    <strong>产品规格：</strong><span>10ml/瓶、50ml/瓶、100ml/瓶、定制包装</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-card reverse" id="cell">
+            <div class="product-content">
+                <h2>桂花细胞液</h2>
+                <p class="subtitle">Osmanthus Cell Liquid</p>
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" onclick="showTab2('cell-tech')">核心工艺</button>
+                        <button class="tab-btn" onclick="showTab2('cell-app')">应用场景</button>
+                        <button class="tab-btn" onclick="showTab2('cell-adv')">核心优势</button>
+                    </div>
+                    <div id="cell-tech" class="tab-content active">
+                        <h3>柱式真空冷凝干燥技术</h3>
+                        <p>采用柱式真空冷凝干燥技术低温冷榨锁鲜，富含桂花活性成分，无添加、无防腐剂，品质可控。</p>
+                        <ul>
+                            <li>低温冷榨，最大程度保留活性成分</li>
+                            <li>无添加、无防腐剂，安全温和</li>
+                            <li>技术达到国际前沿水平</li>
+                        </ul>
+                    </div>
+                    <div id="cell-app" class="tab-content">
+                        <h3>美妆行业应用</h3>
+                        <p>主要面向B端美妆厂商，可直接用于面膜、爽肤水、精华等护肤品研发。</p>
+                        <ul>
+                            <li>面膜研发与生产</li>
+                            <li>爽肤水、精华液调配</li>
+                            <li>温和滋养、提亮肤色</li>
+                            <li>适配各类肤质</li>
+                        </ul>
+                    </div>
+                    <div id="cell-adv" class="tab-content">
+                        <h3>产品优势</h3>
+                        <ul>
+                            <li>技术领先，活性成分含量高</li>
+                            <li>无添加，安全温和</li>
+                            <li>源头直供，性价比高</li>
+                            <li>可满足美妆厂商规模化采购需求</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-highlight">
+                    <strong>产品规格：</strong><span>500ml/瓶、1L/瓶、5L/桶、定制包装</span>
+                </div>
+            </div>
+            <div class="product-image">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="cellGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:rgba(135,206,235,0.25)"/>
+                            <stop offset="100%" style="stop-color:rgba(135,206,235,0.55)"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="85" fill="rgba(135,206,235,0.06)"/>
+                    <ellipse cx="100" cy="115" rx="22" ry="52" fill="white" stroke="#a8d4e3" stroke-width="1.5"/>
+                    <ellipse cx="100" cy="115" rx="16" ry="45" fill="url(#cellGrad)"/>
+                    <rect x="75" y="52" width="50" height="12" rx="2" fill="#5a3f28"/>
+                    <rect x="82" y="47" width="36" height="7" rx="1" fill="#3d2814"/>
+                    <circle cx="68" cy="98" r="3" fill="#87ceeb" opacity="0.5"/>
+                    <circle cx="112" cy="85" r="4" fill="#87ceeb" opacity="0.4"/>
+                    <circle cx="93" cy="128" r="3" fill="#87ceeb" opacity="0.6"/>
+                    <circle cx="122" cy="118" r="2" fill="#87ceeb" opacity="0.5"/>
+                    <circle cx="83" cy="142" r="3" fill="#87ceeb" opacity="0.4"/>
+                    <circle cx="100" cy="42" r="8" fill="#87ceeb"/>
+                    <path d="M100,35 Q104,39 104,44 Q100,42 96,44 Q96,39 100,35" fill="#5a3f28"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="product-card" id="skincare">
+            <div class="product-image">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#faf5ee"/>
+                            <stop offset="100%" style="stop-color:#e8d4a8"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="100" cy="100" r="85" fill="rgba(201,169,98,0.04)"/>
+                    <rect x="68" y="65" width="64" height="95" rx="8" fill="white" stroke="#d4c4a0" stroke-width="1.5"/>
+                    <rect x="68" y="58" width="64" height="10" rx="2" fill="#7a5a3a"/>
+                    <rect x="78" y="82" width="44" height="70" fill="rgba(201,169,98,0.15)"/>
+                    <rect x="83" y="92" width="34" height="50" fill="rgba(201,169,98,0.22)"/>
+                    <circle cx="93" cy="112" r="2" fill="#7a5a3a" opacity="0.4"/>
+                    <circle cx="103" cy="122" r="1.5" fill="#7a5a3a" opacity="0.35"/>
+                    <circle cx="91" cy="128" r="2" fill="#7a5a3a" opacity="0.38"/>
+                    <circle cx="106" cy="133" r="1" fill="#7a5a3a" opacity="0.42"/>
+                    <circle cx="100" cy="48" r="8" fill="#c9a962"/>
+                    <path d="M100,41 Q104,45 104,50 Q100,48 96,50 Q96,45 100,41" fill="#7a5a3a"/>
+                </svg>
+            </div>
+            <div class="product-content">
+                <h2>护肤品原料</h2>
+                <p class="subtitle">Skincare Raw Materials</p>
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" onclick="showTab3('skin-tech')">核心工艺</button>
+                        <button class="tab-btn" onclick="showTab3('skin-app')">应用场景</button>
+                        <button class="tab-btn" onclick="showTab3('skin-adv')">核心优势</button>
+                    </div>
+                    <div id="skin-tech" class="tab-content active">
+                        <h3>先进深加工技术</h3>
+                        <p>以桂花提取物、桂花精油衍生物为核心，采用先进深加工技术，生产流程规范，品质可控。</p>
+                        <ul>
+                            <li>标准化生产流程</li>
+                            <li>严格品质把控</li>
+                            <li>符合国际安全标准</li>
+                        </ul>
+                    </div>
+                    <div id="skin-app" class="tab-content">
+                        <h3>美妆行业应用</h3>
+                        <p>面向B端美妆厂商，适配面霜、精华、护手霜、身体乳等各类护肤品研发。</p>
+                        <ul>
+                            <li>面霜、乳液研发</li>
+                            <li>精华液调配</li>
+                            <li>护手霜、身体乳生产</li>
+                            <li>天然桂花系护肤品打造</li>
+                        </ul>
+                    </div>
+                    <div id="skin-adv" class="tab-content">
+                        <h3>产品优势</h3>
+                        <ul>
+                            <li>品质符合国际标准，可定制浓度</li>
+                            <li>源头直供，供货稳定</li>
+                            <li>技术领先，获得国际客户认可</li>
+                            <li>适配美妆厂商规模化生产需求</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-highlight">
+                    <strong>产品规格：</strong><span>1kg/袋、5kg/桶、25kg/桶、定制包装</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">华彬力美科技</div>
+        <div class="tagline">专注桂花深加工 | 源自咸宁金桂</div>
+        <div class="contact-info">
+            <a href="tel:17371473236">📞 17371473236</a>
+            <a href="mailto:1913672532@qq.com">✉️ 1913672532@qq.com</a>
+        </div>
+        <div class="divider"></div>
+        <div class="copyright">© 2024 华彬力美科技（湖北）有限公司 版权所有</div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-menu');
+            nav.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(e) {
+            const nav = document.querySelector('.nav-menu');
+            if (!e.target.closest('nav') && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
+        });
+
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        function showTab(tabId) {
+            document.querySelectorAll('.product-card:first-child .tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.product-card:first-child .tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function showTab2(tabId) {
+            document.querySelectorAll('.product-card.reverse .tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.product-card.reverse .tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function showTab3(tabId) {
+            document.querySelectorAll('.product-card:last-child .tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.product-card:last-child .tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
