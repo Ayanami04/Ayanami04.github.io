@@ -411,7 +411,7 @@
         }
 
         .equipment-card {
-            background: var(--bg-white);
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: var(--shadow-sm);
@@ -427,6 +427,12 @@
             width: 100%;
             height: 300px;
             object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .equipment-card img.loaded {
+            opacity: 1;
         }
 
         .equipment-card h4 {
@@ -824,6 +830,18 @@
             document.getElementById(tabId).classList.add('active');
             event.target.classList.add('active');
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.onload = function() {
+                    img.classList.add('loaded');
+                };
+                if (img.complete) {
+                    img.classList.add('loaded');
+                }
+            });
+        });
     </script>
 </body>
 </html>
