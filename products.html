@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -398,6 +398,46 @@
             font-weight: 400;
         }
 
+        .equipment-section {
+            background: var(--bg-light);
+            padding: 100px 100px;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .equipment-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .equipment-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .equipment-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .equipment-card h4 {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-dark);
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0;
+        }
+
         footer {
             background: var(--primary); 
             padding: 80px 100px; 
@@ -480,15 +520,15 @@
                 left: 0; 
                 width: 100%; 
                 background: rgba(13, 13, 13, 0.98); 
-                padding: 8px 0; 
+                padding: 2px 0; 
                 gap: 0;
             }
             
             .nav-menu.active { display: flex; }
             .nav-item > a { 
-                padding: 8px 16px; 
+                padding: 5px 16px; 
                 font-size: 14px;
-                line-height: 1.4;
+                line-height: 1.2;
             }
             
             .nav-item > a::after { display: none; }
@@ -580,31 +620,7 @@
     <div class="section">
         <div class="product-card" id="oil">
             <div class="product-image">
-                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="oilGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#c9a962"/>
-                            <stop offset="100%" style="stop-color:#a88b4a"/>
-                        </linearGradient>
-                        <linearGradient id="oilGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style="stop-color:rgba(201,169,98,0.85)"/>
-                            <stop offset="100%" style="stop-color:rgba(168,139,74,0.92)"/>
-                        </linearGradient>
-                    </defs>
-                    <circle cx="100" cy="100" r="85" fill="rgba(201,169,98,0.06)"/>
-                    <ellipse cx="100" cy="110" rx="32" ry="48" fill="url(#oilGrad2)"/>
-                    <ellipse cx="100" cy="110" rx="26" ry="40" fill="url(#oilGrad2)" opacity="0.9"/>
-                    <rect x="72" y="58" width="56" height="12" rx="2" fill="#7a5a3a"/>
-                    <rect x="78" y="53" width="44" height="7" rx="1" fill="#5a3f28"/>
-                    <ellipse cx="100" cy="58" rx="14" ry="4" fill="#7a5a3a"/>
-                    <ellipse cx="92" cy="88" rx="5" ry="7" fill="white" opacity="0.3"/>
-                    <ellipse cx="105" cy="102" rx="3" ry="4" fill="white" opacity="0.25"/>
-                    <ellipse cx="96" cy="122" rx="4" ry="5" fill="white" opacity="0.2"/>
-                    <circle cx="100" cy="42" r="8" fill="url(#oilGrad1)"/>
-                    <path d="M100,35 Q104,39 104,44 Q100,42 96,44 Q96,39 100,35" fill="#7a5a3a"/>
-                    <ellipse cx="94" cy="38" rx="2" ry="4" fill="url(#oilGrad1)" transform="rotate(-25,94,38)"/>
-                    <ellipse cx="106" cy="38" rx="2" ry="4" fill="url(#oilGrad1)" transform="rotate(25,106,38)"/>
-                </svg>
+                <img src="images/超临界1.jpg" alt="超临界CO2萃取设备" style="max-width: 100%; max-height: 380px; border-radius: 8px;"/>
             </div>
             <div class="product-content">
                 <h2>桂花精油</h2>
@@ -640,12 +656,8 @@
                             <li>原料源自咸宁优质桂花基地，源头可控</li>
                             <li>国际前沿萃取技术，品质达到国际标准</li>
                             <li>无任何添加剂，天然安全</li>
-                            <li>获得亚太地区香料协会及国际巨头芬美意认可</li>
                         </ul>
                     </div>
-                </div>
-                <div class="product-highlight">
-                    <strong>产品规格：</strong><span>10ml/瓶、50ml/瓶、100ml/瓶、定制包装</span>
                 </div>
             </div>
         </div>
@@ -689,55 +701,15 @@
                         </ul>
                     </div>
                 </div>
-                <div class="product-highlight">
-                    <strong>产品规格：</strong><span>500ml/瓶、1L/瓶、5L/桶、定制包装</span>
-                </div>
             </div>
             <div class="product-image">
-                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="cellGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style="stop-color:rgba(135,206,235,0.25)"/>
-                            <stop offset="100%" style="stop-color:rgba(135,206,235,0.55)"/>
-                        </linearGradient>
-                    </defs>
-                    <circle cx="100" cy="100" r="85" fill="rgba(135,206,235,0.06)"/>
-                    <ellipse cx="100" cy="115" rx="22" ry="52" fill="white" stroke="#a8d4e3" stroke-width="1.5"/>
-                    <ellipse cx="100" cy="115" rx="16" ry="45" fill="url(#cellGrad)"/>
-                    <rect x="75" y="52" width="50" height="12" rx="2" fill="#5a3f28"/>
-                    <rect x="82" y="47" width="36" height="7" rx="1" fill="#3d2814"/>
-                    <circle cx="68" cy="98" r="3" fill="#87ceeb" opacity="0.5"/>
-                    <circle cx="112" cy="85" r="4" fill="#87ceeb" opacity="0.4"/>
-                    <circle cx="93" cy="128" r="3" fill="#87ceeb" opacity="0.6"/>
-                    <circle cx="122" cy="118" r="2" fill="#87ceeb" opacity="0.5"/>
-                    <circle cx="83" cy="142" r="3" fill="#87ceeb" opacity="0.4"/>
-                    <circle cx="100" cy="42" r="8" fill="#87ceeb"/>
-                    <path d="M100,35 Q104,39 104,44 Q100,42 96,44 Q96,39 100,35" fill="#5a3f28"/>
-                </svg>
+                <img src="images/超临界2.jpg" alt="桂花细胞液生产设备" style="max-width: 100%; max-height: 380px; border-radius: 8px;"/>
             </div>
         </div>
 
         <div class="product-card" id="skincare">
             <div class="product-image">
-                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#faf5ee"/>
-                            <stop offset="100%" style="stop-color:#e8d4a8"/>
-                        </linearGradient>
-                    </defs>
-                    <circle cx="100" cy="100" r="85" fill="rgba(201,169,98,0.04)"/>
-                    <rect x="68" y="65" width="64" height="95" rx="8" fill="white" stroke="#d4c4a0" stroke-width="1.5"/>
-                    <rect x="68" y="58" width="64" height="10" rx="2" fill="#7a5a3a"/>
-                    <rect x="78" y="82" width="44" height="70" fill="rgba(201,169,98,0.15)"/>
-                    <rect x="83" y="92" width="34" height="50" fill="rgba(201,169,98,0.22)"/>
-                    <circle cx="93" cy="112" r="2" fill="#7a5a3a" opacity="0.4"/>
-                    <circle cx="103" cy="122" r="1.5" fill="#7a5a3a" opacity="0.35"/>
-                    <circle cx="91" cy="128" r="2" fill="#7a5a3a" opacity="0.38"/>
-                    <circle cx="106" cy="133" r="1" fill="#7a5a3a" opacity="0.42"/>
-                    <circle cx="100" cy="48" r="8" fill="#c9a962"/>
-                    <path d="M100,41 Q104,45 104,50 Q100,48 96,50 Q96,45 100,41" fill="#7a5a3a"/>
-                </svg>
+                <img src="images/超临界3.jpg" alt="护肤品原料生产" style="max-width: 100%; max-height: 380px; border-radius: 8px;"/>
             </div>
             <div class="product-content">
                 <h2>护肤品原料</h2>
@@ -777,9 +749,24 @@
                         </ul>
                     </div>
                 </div>
-                <div class="product-highlight">
-                    <strong>产品规格：</strong><span>1kg/袋、5kg/桶、25kg/桶、定制包装</span>
-                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section equipment-section">
+        <h2 class="section-title">生产设备</h2>
+        <div class="equipment-grid">
+            <div class="equipment-card">
+                <img src="images/乙醇旋蒸回收.jpg" alt="乙醇旋蒸回收设备"/>
+                <h4>乙醇旋蒸回收</h4>
+            </div>
+            <div class="equipment-card">
+                <img src="images/油水抽滤.jpg" alt="油水抽滤设备"/>
+                <h4>油水抽滤</h4>
+            </div>
+            <div class="equipment-card">
+                <img src="images/纯水验证.jpg" alt="纯水验证设备"/>
+                <h4>纯水验证</h4>
             </div>
         </div>
     </div>

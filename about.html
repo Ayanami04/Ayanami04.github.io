@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -332,15 +332,31 @@
         }
 
         .tech-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .tech-card {
-            background: var(--bg-light); 
-            padding: 45px 40px; 
-            border-radius: 12px;
+            background: var(--bg-white); 
+            padding: 50px 40px; 
+            border-radius: 16px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), rgba(201, 169, 98, 0.3));
         }
 
         .tech-card:hover { 
@@ -405,22 +421,36 @@
         }
 
         .achievements-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .achievements-card {
             background: var(--bg-white); 
-            padding: 40px; 
-            border-radius: 12px;
+            padding: 50px 35px; 
+            border-radius: 16px;
             box-shadow: var(--shadow-sm);
             text-align: center; 
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievements-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), rgba(201, 169, 98, 0.3));
         }
 
         .achievements-card:hover { 
-            transform: translateY(-6px); 
-            box-shadow: var(--shadow-md);
+            transform: translateY(-8px); 
+            box-shadow: var(--shadow-lg);
             border-color: var(--border-gold);
         }
         
@@ -486,6 +516,46 @@
 
         .vision-content p { margin-bottom: 28px; }
         .vision-content strong { color: var(--accent); font-weight: 600; }
+
+        .exhibition-section {
+            background: var(--bg-light);
+            padding: 100px 100px;
+        }
+
+        .exhibition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .exhibition-card {
+            background: var(--bg-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .exhibition-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .exhibition-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .exhibition-card h4 {
+            padding: 18px;
+            text-align: center;
+            color: var(--text-dark);
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0;
+        }
 
         footer {
             background: var(--primary); 
@@ -569,15 +639,15 @@
                 left: 0; 
                 width: 100%; 
                 background: rgba(13, 13, 13, 0.98); 
-                padding: 8px 0; 
+                padding: 2px 0; 
                 gap: 0;
             }
             
             .nav-menu.active { display: flex; }
             .nav-item > a { 
-                padding: 8px 16px; 
+                padding: 5px 16px; 
                 font-size: 14px;
-                line-height: 1.4;
+                line-height: 1.2;
             }
             
             .nav-item > a::after { display: none; }
@@ -607,7 +677,8 @@
             .section { padding: 70px 25px; }
             .overview, .material-section { grid-template-columns: 1fr; gap: 45px; }
             .strength-grid { grid-template-columns: repeat(2, 1fr); gap: 35px; }
-            .tech-grid { grid-template-columns: 1fr; gap: 30px; }
+            .tech-grid { grid-template-columns: 1fr; gap: 25px; }
+            .tech-card { padding: 35px 25px; }
             .achievements-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
 
             footer { padding: 60px 25px; }
@@ -672,30 +743,7 @@
             <p>基地定位华中地区桂花精油、香精、香料核心生产基地，年处理鲜桂花200吨，推动桂花产业高附加值转型，助力乡村振兴与产业升级，推动咸宁从"中国桂花之乡"向"中国桂花城"蝶变。</p>
         </div>
         <div class="overview-image">
-            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <linearGradient id="buildingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#8B5A2B"/>
-                        <stop offset="100%" style="stop-color:#5D3A1A"/>
-                    </linearGradient>
-                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#F5C76F"/>
-                        <stop offset="100%" style="stop-color:#D4A04A"/>
-                    </linearGradient>
-                </defs>
-                <rect x="30" y="60" width="140" height="80" fill="url(#buildingGrad)" rx="5"/>
-                <rect x="40" y="50" width="60" height="30" fill="url(#buildingGrad)" rx="3"/>
-                <rect x="110" y="40" width="50" height="40" fill="url(#buildingGrad)" rx="3"/>
-                <rect x="50" y="80" width="20" height="40" fill="rgba(255,255,255,0.1)"/>
-                <rect x="85" y="80" width="20" height="40" fill="rgba(255,255,255,0.1)"/>
-                <rect x="120" y="80" width="15" height="40" fill="rgba(255,255,255,0.1)"/>
-                <rect x="145" y="80" width="15" height="40" fill="rgba(255,255,255,0.1)"/>
-                <circle cx="100" cy="30" r="15" fill="url(#goldGrad)"/>
-                <path d="M100,15 Q105,20 105,25 Q100,22 95,25 Q95,20 100,15" fill="#8B5A2B"/>
-                <ellipse cx="95" cy="18" rx="3" ry="5" fill="url(#goldGrad)" transform="rotate(-30,95,18)"/>
-                <ellipse cx="105" cy="18" rx="3" ry="5" fill="url(#goldGrad)" transform="rotate(30,105,18)"/>
-                <ellipse cx="100" cy="12" rx="3" ry="5" fill="url(#goldGrad)"/>
-            </svg>
+            <img src="images/展厅.jpg" alt="公司展厅" style="max-width: 100%; max-height: 350px; border-radius: 8px;"/>
         </div>
     </div>
 
@@ -766,27 +814,6 @@
                 <h3>柱式真空冷凝干燥技术</h3>
                 <p>创新性引入柱式真空冷凝干燥技术，低温冷榨锁鲜，最大程度保留桂花活性成分与营养物质。</p>
             </div>
-            <div class="tech-card">
-                <div class="tech-icon">
-                    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="techGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#98FB98"/>
-                                <stop offset="100%" style="stop-color:#3CB371"/>
-                            </linearGradient>
-                        </defs>
-                        <circle cx="40" cy="40" r="35" fill="rgba(152,251,152,0.1)"/>
-                        <rect x="30" y="25" width="20" height="30" rx="3" fill="white" stroke="#98FB98" stroke-width="2"/>
-                        <rect x="33" y="30" width="14" height="20" fill="url(#techGrad3)" opacity="0.3"/>
-                        <circle cx="35" cy="35" r="2" fill="#3CB371"/>
-                        <circle cx="42" cy="40" r="1.5" fill="#3CB371"/>
-                        <circle cx="38" cy="45" r="2" fill="#3CB371"/>
-                        <circle cx="44" cy="43" r="1" fill="#3CB371"/>
-                    </svg>
-                </div>
-                <h3>企校联合创新中心</h3>
-                <p>联合咸宁市政府成立"咸宁市桂花深加工技术企校联合创新中心"，联动多家研究所及企业，攻克桂花深加工关键技术难题。</p>
-            </div>
         </div>
     </div>
 
@@ -850,15 +877,6 @@
             <div class="achievements-card">
                 <div class="achievements-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="#8B5A2B" stroke-width="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                    </svg>
-                </div>
-                <h3>技术突破</h3>
-                <p>掌握国际前沿桂花深加工技术，实现产品高端化、标准化，亮相2024亚洲精油大会获高度认可。</p>
-            </div>
-            <div class="achievements-card">
-                <div class="achievements-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="#8B5A2B" stroke-width="2">
                         <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                     </svg>
                 </div>
@@ -882,6 +900,32 @@
         <div class="vision-content">
             <p><strong>华彬集团</strong>将持续以创新为引领，深耕大健康产业布局，丰富桂花产品矩阵，探索桂花与饮品创新融合，推动桂花香精融入集团快消品研发。</p>
             <p>以"<strong>桂香芬芳、点亮未来</strong>"为内核，高效转化咸宁桂花资源，做强做大桂花产业，再添华彬力美一域之光，为咸宁经济高质量发展增光添彩。</p>
+        </div>
+    </div>
+
+    <div class="section exhibition-section">
+        <h2 class="section-title">展厅展示</h2>
+        <div class="exhibition-grid">
+            <div class="exhibition-card">
+                <img src="images/展台1.jpg" alt="展台1"/>
+                <h4>展台展示</h4>
+            </div>
+            <div class="exhibition-card">
+                <img src="images/展台4.jpg" alt="展台4"/>
+                <h4>产品展台</h4>
+            </div>
+            <div class="exhibition-card">
+                <img src="images/展柜1.jpg" alt="展柜1"/>
+                <h4>展柜展示</h4>
+            </div>
+            <div class="exhibition-card">
+                <img src="images/展柜2.jpg" alt="展柜2"/>
+                <h4>精品展柜</h4>
+            </div>
+            <div class="exhibition-card">
+                <img src="images/展柜整体.jpg" alt="展柜整体"/>
+                <h4>展厅全景</h4>
+            </div>
         </div>
     </div>
 

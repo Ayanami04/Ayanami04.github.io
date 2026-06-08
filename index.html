@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +6,121 @@
     <title>华彬力美科技（湖北）有限公司 - 源自咸宁金桂，萃取自然本味</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--accent-dark), var(--accent));
+            transform: scaleX(1.1);
+        }
+
+        /* 滚动动画类 */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            animation: scaleIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* 延迟动画 */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        /* 鼠标跟随光晕效果 */
+        .cursor-glow {
+            position: fixed;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 169, 98, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+            z-index: 9999;
+            opacity: 1;
+        }
+
+        /* 滚动触发动画 */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.left {
+            transform: translateX(-40px);
+        }
+
+        .animate-on-scroll.right {
+            transform: translateX(40px);
+        }
+
+        .animate-on-scroll.scale {
+            transform: scale(0.9);
+        }
+
+        .animate-on-scroll.animate {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+
         :root {
             --primary: #0d0d0d;
             --secondary: #1a1a1a;
@@ -704,15 +819,15 @@
                 left: 0; 
                 width: 100%; 
                 background: rgba(13, 13, 13, 0.98); 
-                padding: 8px 0; 
+                padding: 2px 0; 
                 gap: 0;
             }
             
             .nav-menu.active { display: flex; }
             .nav-item > a { 
-                padding: 8px 16px; 
+                padding: 5px 16px; 
                 font-size: 14px;
-                line-height: 1.4;
+                line-height: 1.2;
             }
             
             .nav-item > a::after { display: none; }
@@ -843,10 +958,10 @@
             </svg>
         </div>
         <div class="hero-content">
-            <div class="hero-subtitle">源自中国桂花之乡</div>
-            <h1>华彬力美科技（湖北）有限公司</h1>
-            <p>依托科技赋能，萃取自然本味，致力于桂花深加工产业的创新发展</p>
-            <div>
+            <div class="hero-subtitle fade-in-up delay-1">源自中国桂花之乡</div>
+            <h1 class="fade-in-up delay-2">华彬力美科技（湖北）有限公司</h1>
+            <p class="fade-in-up delay-3">依托科技赋能，萃取自然本味，致力于桂花深加工产业的创新发展</p>
+            <div class="fade-in-up delay-4">
                 <a href="products.html" class="btn">查看产品</a>
                 <a href="about.html" class="btn btn-secondary">了解更多</a>
             </div>
@@ -854,7 +969,7 @@
     </div>
 
     <div class="products-preview">
-        <div class="product-card">
+        <div class="product-card animate-on-scroll left">
             <div class="product-image">
                 <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -884,7 +999,7 @@
             <a href="products.html" class="product-link">了解详情</a>
         </div>
 
-        <div class="product-card">
+        <div class="product-card animate-on-scroll right">
             <div class="product-image">
                 <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -911,7 +1026,7 @@
             <a href="products.html" class="product-link">了解详情</a>
         </div>
 
-        <div class="product-card">
+        <div class="product-card animate-on-scroll scale">
             <div class="product-image">
                 <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
                     <defs>
@@ -938,7 +1053,7 @@
         </div>
     </div>
 
-    <div class="strength-section">
+    <div class="strength-section animate-on-scroll">
         <div class="strength-cards">
             <div class="strength-card">
                 <div class="number">1.3亿</div>
@@ -960,15 +1075,6 @@
     </div>
 
     <div class="honor-section">
-        <h2 class="section-title">荣誉资质</h2>
-        <div class="honor-cards">
-            <div class="honor-card"><div class="honor-icon">🏆</div><h4>高新技术企业</h4><p>国家级认定</p></div>
-            <div class="honor-card"><div class="honor-icon">📜</div><h4>ISO认证</h4><p>质量管理体系</p></div>
-            <div class="honor-card"><div class="honor-icon">⭐</div><h4>亚太香料协会</h4><p>会员单位</p></div>
-            <div class="honor-card"><div class="honor-icon">💎</div><h4>芬美意认证</h4><p>优质供应商</p></div>
-            <div class="honor-card"><div class="honor-icon">🌾</div><h4>农业产业化</h4><p>重点龙头企业</p></div>
-            <div class="honor-card"><div class="honor-icon">🔬</div><h4>企校创新中心</h4><p>技术研发</p></div>
-        </div>
     </div>
 
     <div class="mission-section">
@@ -1007,6 +1113,36 @@
             } else {
                 nav.classList.remove('scrolled');
             }
+        });
+
+        // 滚动触发动画
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -100px 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // 观察需要动画的元素
+        document.querySelectorAll('.animate-on-scroll').forEach(function(el) {
+            observer.observe(el);
+        });
+
+        // 鼠标跟随光晕效果
+        const cursorGlow = document.createElement('div');
+        cursorGlow.className = 'cursor-glow';
+        document.body.appendChild(cursorGlow);
+
+        document.addEventListener('mousemove', function(e) {
+            cursorGlow.style.left = e.clientX + 'px';
+            cursorGlow.style.top = e.clientY + 'px';
         });
     </script>
 </body>
