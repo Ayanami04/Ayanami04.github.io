@@ -655,7 +655,7 @@
     <div class="section">
         <div class="product-card" id="oil">
             <div class="product-image">
-                <div class="img-placeholder-lg" style="max-width: 100%; max-height: 380px; border-radius: 8px;"></div>
+                <img src="images/co2-1.jpg" alt="桂花精油" style="max-width: 100%; max-height: 380px; border-radius: 8px; object-fit: cover;" loading="lazy" decoding="async">
             </div>
             <div class="product-content">
                 <h2>桂花精油</h2>
@@ -738,13 +738,13 @@
                 </div>
             </div>
             <div class="product-image">
-                <div class="img-placeholder-lg" style="max-width: 100%; max-height: 380px; border-radius: 8px;"></div>
+                <img src="images/co2-2.jpg" alt="桂花细胞液" style="max-width: 100%; max-height: 380px; border-radius: 8px; object-fit: cover;" loading="lazy" decoding="async">
             </div>
         </div>
 
         <div class="product-card" id="skincare">
             <div class="product-image">
-                <div class="img-placeholder-lg" style="max-width: 100%; max-height: 380px; border-radius: 8px;"></div>
+                <img src="images/co2-3.jpg" alt="护肤品原料" style="max-width: 100%; max-height: 380px; border-radius: 8px; object-fit: cover;" loading="lazy" decoding="async">
             </div>
             <div class="product-content">
                 <h2>护肤品原料</h2>
@@ -792,15 +792,15 @@
         <h2 class="section-title">生产设备</h2>
         <div class="equipment-grid">
         <div class="equipment-card">
-            <div class="img-placeholder"></div>
+            <img src="images/ethanol.jpg" alt="乙醇旋蒸回收" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" loading="lazy" decoding="async">
             <h4>乙醇旋蒸回收</h4>
         </div>
         <div class="equipment-card">
-            <div class="img-placeholder"></div>
+            <img src="images/oil-water.jpg" alt="油水抽滤" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" loading="lazy" decoding="async">
             <h4>油水抽滤</h4>
         </div>
         <div class="equipment-card">
-            <div class="img-placeholder"></div>
+            <img src="images/water.jpg" alt="纯水验证" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;" loading="lazy" decoding="async">
             <h4>纯水验证</h4>
         </div>
     </div>
@@ -818,6 +818,19 @@
     </footer>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const criticalImages = [
+                'images/co2-1.jpg',
+                'images/co2-2.jpg',
+                'images/co2-3.jpg'
+            ];
+            
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        });
+
         function toggleMenu() {
             const nav = document.querySelector('.nav-menu');
             nav.classList.toggle('active');
